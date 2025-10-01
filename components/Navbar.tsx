@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Bell } from "lucide-react";
 import { Button } from "./ui/button";
-import SearchBox from "./search-box";
+import SearchBox from "./SearchBox";
 const Navbar = () => {
   return (
     <nav className="wrapper py-4 flex items-center justify-between">

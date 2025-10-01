@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Outfit } from "next/font/google";
-import { Providers } from "@/components/provider";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/components/Provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 //@ts-ignore
 import "./globals.css";
