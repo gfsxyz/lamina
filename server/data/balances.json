@@ -1,0 +1,50 @@
+[
+  {
+    "id": "bal_1",
+    "tokenSymbol": "SOL",
+    "tokenName": "Solana",
+    "amount": 25.42,
+    "usdValue": 540.22,
+    "logoUrl": "/tokens/sol.png"
+  },
+  {
+    "id": "bal_2",
+    "tokenSymbol": "USDC",
+    "tokenName": "USD Coin",
+    "amount": 1020,
+    "usdValue": 1020,
+    "logoUrl": "/tokens/usdc.png"
+  },
+  {
+    "id": "bal_3",
+    "tokenSymbol": "BTC",
+    "tokenName": "Bitcoin",
+    "amount": 0.05,
+    "usdValue": 1500,
+    "logoUrl": "/tokens/btc.png"
+  },
+  {
+    "id": "bal_4",
+    "tokenSymbol": "ETH",
+    "tokenName": "Ethereum",
+    "amount": 0.8,
+    "usdValue": 2200,
+    "logoUrl": "/tokens/eth.png"
+  },
+  {
+    "id": "bal_5",
+    "tokenSymbol": "BONK",
+    "tokenName": "Bonk",
+    "amount": 1200000,
+    "usdValue": 400,
+    "logoUrl": "/tokens/bonk.png"
+  },
+  {
+    "id": "bal_6",
+    "tokenSymbol": "RAY",
+    "tokenName": "Raydium",
+    "amount": 500,
+    "usdValue": 300,
+    "logoUrl": "/tokens/ray.png"
+  }
+]

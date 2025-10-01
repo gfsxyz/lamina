@@ -1,0 +1,50 @@
+[
+  {
+    "id": "nft_1",
+    "name": "Lamina NFT #1",
+    "imageUrl": "/nfts/nft1.png",
+    "collection": "Lamina Collection",
+    "floorPrice": 14.23,
+    "estValueUsd": 274.91
+  },
+  {
+    "id": "nft_2",
+    "name": "Lamina NFT #2",
+    "imageUrl": "/nfts/nft2.png",
+    "collection": "Lamina Collection",
+    "floorPrice": 17.82,
+    "estValueUsd": 331.55
+  },
+  {
+    "id": "nft_3",
+    "name": "Lamina NFT #3",
+    "imageUrl": "/nfts/nft3.png",
+    "collection": "Lamina Collection",
+    "floorPrice": 6.91,
+    "estValueUsd": 122.44
+  },
+  {
+    "id": "nft_4",
+    "name": "Lamina NFT #4",
+    "imageUrl": "/nfts/nft4.png",
+    "collection": "Lamina Collection",
+    "floorPrice": 11.56,
+    "estValueUsd": 407.88
+  },
+  {
+    "id": "nft_5",
+    "name": "Lamina NFT #5",
+    "imageUrl": "/nfts/nft5.png",
+    "collection": "Lamina Collection",
+    "floorPrice": 18.91,
+    "estValueUsd": 492.17
+  },
+  {
+    "id": "nft_6",
+    "name": "Lamina NFT #6",
+    "imageUrl": "/nfts/nft6.png",
+    "collection": "Lamina Collection",
+    "floorPrice": 7.42,
+    "estValueUsd": 185.11
+  }
+]
