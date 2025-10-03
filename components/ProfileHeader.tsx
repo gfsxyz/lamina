@@ -1,0 +1,196 @@
+"use client";
+
+import { useState } from "react";
+import { trpc } from "@/lib/trpc";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { HelpCircle } from "lucide-react";
+import { usd } from "@/lib/currency";
+import { Skeleton } from "./ui/skeleton";
+
+const ProfileHeader = () => {
+  const { data, isLoading } = trpc.portfolio.getProfile.useQuery();
+
+  const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleCopy = async (address: string) => {
+    if (!address) return;
+    await navigator.clipboard.writeText(address);
+    setCopied(true);
+    setOpen(true);
+    setTimeout(() => {
+      setCopied(false);
+      setOpen(false);
+    }, 1500);
+  };
+
+  if (isLoading) {
+    return (
+      <header className="wrapper py-6">
+        <div className="flex gap-4 items-center">
+          <Skeleton className="w-28 h-28 rounded-xl" />
+          <div className="space-y-3">
+            <Skeleton className="w-24 h-5" />
+            <Skeleton className="w-52 h-5" />
+            <Skeleton className="w-52 h-5" />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 sm:gap-8 mt-8">
+          <div>
+            <div className="text-sm text-muted-foreground font-medium">
+              Following
+            </div>
+            <Skeleton className="w-16 h-5 mt-1" />
+          </div>
+          <div>
+            <div className="text-sm text-muted-foreground font-medium">
+              Followers
+            </div>
+            <Skeleton className="w-16 h-5 mt-1" />
+          </div>
+          <div>
+            <Tooltip>
+              <TooltipTrigger>
+                <div className="flex items-center gap-1 text-sm text-muted-foreground font-medium cursor-help">
+                  <span>Earnings</span>
+                  <HelpCircle size={12} />
+                </div>
+              </TooltipTrigger>
+
+              <TooltipContent>DeFi daily earnings</TooltipContent>
+            </Tooltip>
+            <Skeleton className="w-20 h-5 mt-1" />
+          </div>
+
+          <div>
+            <div className="text-sm text-muted-foreground font-medium">
+              Net Worth
+            </div>
+            <Skeleton className="w-20 h-5 mt-1" />
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <header className="wrapper py-6">
+      <div className="flex gap-4 items-center">
+        <Image
+          alt={`${data?.displayName} profile picture`}
+          src={data?.avatar || "/placeholder.jpg"}
+          width={112}
+          height={112}
+          className={"rounded-xl"}
+        />
+
+        <div>
+          <div className="font-semibold flex items-center gap-4">
+            <div className="text-lg">{data?.ens ?? "Unknown"}</div>
+            <div className="flex items-center gap-2">
+              <Button
+                size={"icon"}
+                variant={"outline"}
+                className="size-6"
+                asChild
+              >
+                <Link
+                  href={data?.links.x || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image src={"/x.svg"} alt="x logo" width={8} height={8} />
+                </Link>
+              </Button>
+              <Button
+                size={"icon"}
+                variant={"outline"}
+                className="size-6"
+                asChild
+              >
+                <Link
+                  href={data?.links.telegram || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={"/telegram.svg"}
+                    alt="telegram logo"
+                    width={12}
+                    height={12}
+                  />
+                </Link>
+              </Button>
+            </div>
+
+            <Button size={"sm"} className="h-7">
+              Follow
+            </Button>
+          </div>
+
+          <Tooltip open={open} onOpenChange={setOpen}>
+            <TooltipTrigger
+              className="flex gap-2 w-full max-w-96 overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground pr-2 text-sm leading-8 cursor-pointer hover:underline"
+              onClick={() => handleCopy(data?.address || "")}
+            >
+              {data?.address || "0x0000...0000"}
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              <p>{copied ? "Copied!" : "Copy address to clipboard"}</p>
+            </TooltipContent>
+          </Tooltip>
+
+          <div>
+            {data?.bio ??
+              "This user prefers to keep an air of mystery about them."}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-8 mt-8">
+        <div>
+          <div className="text-sm text-muted-foreground font-medium">
+            Following
+          </div>
+          <div>{data?.following ?? 0}</div>
+        </div>
+        <div>
+          <div className="text-sm text-muted-foreground font-medium">
+            Followers
+          </div>
+          <div>{data?.followers ?? 0}</div>
+        </div>
+        <div>
+          <Tooltip>
+            <TooltipTrigger>
+              <div className="flex items-center gap-1 text-sm text-muted-foreground font-medium cursor-help">
+                <span>Earnings</span>
+                <HelpCircle size={12} />
+              </div>
+            </TooltipTrigger>
+
+            <TooltipContent>DeFi daily earnings</TooltipContent>
+          </Tooltip>
+          <div>{usd(data?.earnings ?? 0)}</div>
+        </div>
+
+        <div>
+          <div className="text-sm text-muted-foreground font-medium">
+            Net Worth
+          </div>
+          <div>
+            <span>{usd(data?.netWorth.usd ?? 0)}</span>
+            <span className="text-emerald-400 text-xs pl-2">
+              +{data?.netWorth.changePercent ?? 0}%
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+export default ProfileHeader;

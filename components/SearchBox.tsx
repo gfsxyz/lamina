@@ -33,7 +33,7 @@ export default function SearchBox() {
         placeholder="Search address, Nfts, tokens..."
         className="px-10"
       />
-      <div className="text-center rounded border text-primary/50 absolute right-2.5 top-3.5 text-xs size-5 select-none">
+      <div className="text-center rounded border text-primary-foreground/50 absolute right-2.5 top-3.5 text-xs size-5 select-none hidden sm:block">
         K
       </div>
     </div>

@@ -1,6 +1,294 @@
 {
-  "id": "user_1",
-  "name": "Genta Suroso",
-  "walletAddress": "7K2f9aXQEz3nZsu5A4Rkz3YX8Q1Lm7H5r2Bv1kNn3eJd",
-  "createdAt": "2025-01-01T00:00:00Z"
+  "address": "0x1234abcd5678ef901234abcd5678ef901234abcd",
+  "ens": "lilthing.eth",
+  "profile": {
+    "username": "lilthing",
+    "displayName": "lilthing.eth",
+    "bio": "Crypto Researcher • On-chain data nerd | Tokenomics, MEV, & L2s | Explainers weekly.",
+    "avatar": "/media/nft/punk.png",
+    "followers": 573,
+    "following": 234,
+    "earnings": 2477.26,
+    "netWorth": {
+      "usd": 350422,
+      "changePercent": 4.79,
+      "breakdown": {
+        "tokens": 301222,
+        "defi": 30100,
+        "nfts": 19000
+      }
+    },
+    "links": {
+      "x": "https://x.com/x",
+      "telegram": "https://t.me/telegram",
+      "website": "https://ethereum.org"
+    }
+  },
+  "portfolio": [
+    {
+      "chain": "Ethereum",
+      "chainId": 1,
+      "symbol": "ETH",
+      "balance": 12.45,
+      "usdValue": 38100.55,
+      "icon": "/media/token/eth.svg",
+      "assets": [
+        {
+          "symbol": "USDT",
+          "balance": 55500,
+          "usdValue": 55500,
+          "icon": "/media/token/usdt.svg"
+        },
+        {
+          "symbol": "USDC",
+          "balance": 103200,
+          "usdValue": 103200,
+          "icon": "/media/token/usdc.svg"
+        },
+        {
+          "symbol": "DAI",
+          "balance": 1200,
+          "usdValue": 1200,
+          "icon": "/media/token/dai.svg"
+        },
+        {
+          "symbol": "LINK",
+          "balance": 800,
+          "usdValue": 6500,
+          "icon": "/media/token/link.svg"
+        }
+      ]
+    },
+    {
+      "chain": "Binance Smart Chain",
+      "chainId": 56,
+      "symbol": "BNB",
+      "balance": 87.2,
+      "usdValue": 20540.74,
+      "icon": "/media/token/bnb.svg",
+      "assets": [
+        {
+          "symbol": "CAKE",
+          "balance": 1500,
+          "usdValue": 3000,
+          "icon": "/media/token/cake.svg"
+        },
+        {
+          "symbol": "USDT",
+          "balance": 4000,
+          "usdValue": 4000,
+          "icon": "/media/token/usdt.svg"
+        },
+        {
+          "symbol": "BUSD",
+          "balance": 2500,
+          "usdValue": 2500,
+          "icon": "/media/token/busd.svg"
+        }
+      ]
+    },
+    {
+      "chain": "Avalanche",
+      "chainId": 43114,
+      "symbol": "AVAX",
+      "balance": 450.0,
+      "usdValue": 17500.0,
+      "icon": "/media/token/avax.svg",
+      "assets": [
+        {
+          "symbol": "JOE",
+          "balance": 2000,
+          "usdValue": 1500,
+          "icon": "/media/token/joe.svg"
+        },
+        {
+          "symbol": "USDT",
+          "balance": 3000,
+          "usdValue": 3000,
+          "icon": "/media/token/usdt.svg"
+        },
+        {
+          "symbol": "USDC",
+          "balance": 2200,
+          "usdValue": 2200,
+          "icon": "/media/token/usdc.svg"
+        }
+      ]
+    },
+    {
+      "chain": "Arbitrum One",
+      "chainId": 42161,
+      "symbol": "ARB",
+      "balance": 12500,
+      "usdValue": 46200.0,
+      "icon": "/media/token/arb.svg",
+      "assets": [
+        {
+          "symbol": "GMX",
+          "balance": 320,
+          "usdValue": 12000,
+          "icon": "/media/token/gmx.svg"
+        },
+        {
+          "symbol": "MAGIC",
+          "balance": 2500,
+          "usdValue": 2000,
+          "icon": "/media/token/magic.svg"
+        },
+        {
+          "symbol": "USDC",
+          "balance": 5000,
+          "usdValue": 5000,
+          "icon": "/media/token/usdc.svg"
+        }
+      ]
+    },
+    {
+      "chain": "Sui",
+      "chainId": 77777,
+      "symbol": "SUI",
+      "balance": 9200,
+      "usdValue": 28900.97,
+      "icon": "/media/token/sui.svg",
+      "assets": [
+        {
+          "symbol": "USDC",
+          "balance": 1000,
+          "usdValue": 1000,
+          "icon": "/media/token/usdc.svg"
+        },
+        {
+          "symbol": "CETUS",
+          "balance": 5400,
+          "usdValue": 3200,
+          "icon": "/media/token/cetus.svg"
+        },
+        {
+          "symbol": "NAVX",
+          "balance": 1800,
+          "usdValue": 750,
+          "icon": "/media/token/navx.svg"
+        }
+      ]
+    }
+  ],
+  "defi": [
+    {
+      "protocol": "Curve",
+      "chain": "Ethereum",
+      "position": "Liquidity Pool",
+      "icon": "/media/defi/curve.svg",
+      "assets": [
+        {
+          "symbol": "ETH",
+          "supplied": 5,
+          "usdValue": 15300,
+          "apy": 3.2
+        }
+      ]
+    },
+    {
+      "protocol": "Uniswap V3",
+      "chain": "Ethereum",
+      "position": "Liquidity Pool",
+      "icon": "/media/defi/uniswap.svg",
+      "assets": [
+        {
+          "pair": "ETH/USDC",
+          "liquidity": 12000,
+          "usdValue": 9500,
+          "apy": 18.5
+        }
+      ]
+    },
+    {
+      "protocol": "GMX",
+      "chain": "Arbitrum",
+      "position": "Staking",
+      "icon": "/media/defi/gmx.svg",
+      "assets": [
+        {
+          "symbol": "GMX",
+          "staked": 200,
+          "usdValue": 5300,
+          "apy": 12.1
+        }
+      ]
+    },
+    {
+      "protocol": "Lido",
+      "chain": "Ethereum",
+      "position": "Liquidity Pool",
+      "icon": "/media/defi/lido.svg",
+      "assets": [
+        {
+          "pair": "ETH/USDC",
+          "liquidity": 5477,
+          "usdValue": 4211,
+          "apy": 11.28
+        }
+      ]
+    }
+  ],
+  "nfts": [
+    {
+      "collection": "Pudgy Penguins",
+      "contract": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
+      "items": [
+        {
+          "tokenId": "pengu-112",
+          "image": "/media/nft/pengu1.jpg",
+          "usdValue": 4200
+        },
+        {
+          "tokenId": "pengu-298",
+          "image": "/media/nft/pengu2.jpg",
+          "usdValue": 3900
+        }
+      ]
+    },
+    {
+      "collection": "CryptoPunks",
+      "contract": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+      "items": [
+        {
+          "tokenId": "punk-123",
+          "image": "/media/nft/punk.png",
+          "usdValue": 8000
+        }
+      ]
+    },
+    {
+      "collection": "Doodles",
+      "contract": "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e",
+      "items": [
+        {
+          "tokenId": "doodle-45",
+          "image": "/media/nft/dood.jpg",
+          "usdValue": 6200
+        }
+      ]
+    },
+    {
+      "collection": "Sir Nerds",
+      "contract": "0x1234567890abcdef1234567890abcdef12345678",
+      "items": [
+        {
+          "tokenId": "nerd-1",
+          "image": "/media/nft/p1.jpg",
+          "usdValue": 500
+        },
+        {
+          "tokenId": "nerd-2",
+          "image": "/media/nft/p2.jpg",
+          "usdValue": 650
+        },
+        {
+          "tokenId": "nerd-3",
+          "image": "/media/nft/p3.jpg",
+          "usdValue": 2377
+        }
+      ]
+    }
+  ]
 }

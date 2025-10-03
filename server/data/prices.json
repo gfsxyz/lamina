@@ -1,0 +1,66 @@
+{
+  "ETH": {
+    "usd": 3060.45,
+    "change24h": 2.13
+  },
+  "USDT": {
+    "usd": 1.0,
+    "change24h": -0.01
+  },
+  "USDC": {
+    "usd": 1.0,
+    "change24h": 0.0
+  },
+  "DAI": {
+    "usd": 0.999,
+    "change24h": -0.05
+  },
+  "LINK": {
+    "usd": 8.12,
+    "change24h": 1.22
+  },
+  "BNB": {
+    "usd": 235.56,
+    "change24h": -0.87
+  },
+  "CAKE": {
+    "usd": 2.01,
+    "change24h": 3.45
+  },
+  "BUSD": {
+    "usd": 1.0,
+    "change24h": 0.0
+  },
+  "AVAX": {
+    "usd": 38.88,
+    "change24h": 4.12
+  },
+  "JOE": {
+    "usd": 0.43,
+    "change24h": -1.56
+  },
+  "ARB": {
+    "usd": 1.12,
+    "change24h": 2.88
+  },
+  "GMX": {
+    "usd": 45.66,
+    "change24h": -0.32
+  },
+  "MAGIC": {
+    "usd": 0.72,
+    "change24h": 1.95
+  },
+  "SUI": {
+    "usd": 3.14,
+    "change24h": 5.12
+  },
+  "CETUS": {
+    "usd": 0.089,
+    "change24h": -2.11
+  },
+  "NAVX": {
+    "usd": 0.41,
+    "change24h": 0.55
+  }
+}
