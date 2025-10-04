@@ -3,7 +3,6 @@ import { Geist_Mono, Outfit } from "next/font/google";
 import { Providers } from "@/components/Provider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-//@ts-ignore
 import "./globals.css";
 
 const fontFamily = Outfit({
