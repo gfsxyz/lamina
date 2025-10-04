@@ -10,12 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { trpc } from "@/lib/trpc";
+import { Profile, trpc } from "@/lib/trpc";
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
-const Wallet = () => {
-  const { data: profile } = trpc.portfolio.getProfile.useQuery();
+const Wallet = ({ profile }: { profile: Profile | undefined }) => {
   const { data: prices } = trpc.portfolio.getPrices.useQuery();
   const { data: tokens } = trpc.portfolio.getTokens.useQuery({
     count: 5,
@@ -26,7 +26,9 @@ const Wallet = () => {
   return (
     <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
       <div className="text-lg font-semibold flex items-center justify-between">
-        <h2>Wallet</h2>
+        <Link href={"#"} className="hover:underline underline-offset-4">
+          <h2>Wallet</h2>
+        </Link>
         <div>{usd(profile?.netWorth.breakdown.tokens ?? 0)}</div>
       </div>
 

@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import user from "@/server/data/user.json";
 import prices from "@/server/data/prices.json";
+import activities from "@/server/data/activities.json";
 
 export const portfolioRouter = router({
   getUser: publicProcedure.query(() => user), //get all user's data
@@ -14,6 +15,33 @@ export const portfolioRouter = router({
   getPortofolio: publicProcedure.query(() => user.portfolio),
 
   getPrices: publicProcedure.query(() => prices),
+
+  getNfts: publicProcedure.query(() => user.nfts),
+
+  getDefi: publicProcedure.query(() => user.defi),
+
+  getActivities: publicProcedure
+    .input(
+      z
+        .object({
+          limit: z.number().min(1).max(100).optional(),
+          sort: z.enum(["asc", "desc"]).optional().default("desc"),
+        })
+        .optional()
+    )
+    .query(({ input }) => {
+      let sorted = [...activities].sort((a, b) =>
+        input?.sort === "asc"
+          ? new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+          : new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      );
+
+      if (input?.limit) {
+        sorted = sorted.slice(0, input.limit);
+      }
+
+      return sorted;
+    }),
 
   getTokens: publicProcedure
     .input(

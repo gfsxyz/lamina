@@ -234,61 +234,51 @@
     {
       "collection": "Pudgy Penguins",
       "contract": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
-      "items": [
-        {
-          "tokenId": "pengu-112",
-          "image": "/media/nft/pengu1.jpg",
-          "usdValue": 4200
-        },
-        {
-          "tokenId": "pengu-298",
-          "image": "/media/nft/pengu2.jpg",
-          "usdValue": 3900
-        }
-      ]
+      "tokenId": "1122",
+      "image": "/media/nft/pengu1.jpg",
+      "usdValue": 4200
+    },
+    {
+      "collection": "Pudgy Penguins",
+      "contract": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
+      "tokenId": "2988",
+      "image": "/media/nft/pengu2.jpg",
+      "usdValue": 3900
     },
     {
       "collection": "CryptoPunks",
       "contract": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
-      "items": [
-        {
-          "tokenId": "punk-123",
-          "image": "/media/nft/punk.png",
-          "usdValue": 8000
-        }
-      ]
+      "tokenId": "1239",
+      "image": "/media/nft/punk.png",
+      "usdValue": 8000
     },
     {
       "collection": "Doodles",
       "contract": "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e",
-      "items": [
-        {
-          "tokenId": "doodle-45",
-          "image": "/media/nft/dood.jpg",
-          "usdValue": 6200
-        }
-      ]
+      "tokenId": "4555",
+      "image": "/media/nft/dood.jpg",
+      "usdValue": 6200
     },
     {
       "collection": "Sir Nerds",
       "contract": "0x1234567890abcdef1234567890abcdef12345678",
-      "items": [
-        {
-          "tokenId": "nerd-1",
-          "image": "/media/nft/p1.jpg",
-          "usdValue": 500
-        },
-        {
-          "tokenId": "nerd-2",
-          "image": "/media/nft/p2.jpg",
-          "usdValue": 650
-        },
-        {
-          "tokenId": "nerd-3",
-          "image": "/media/nft/p3.jpg",
-          "usdValue": 2377
-        }
-      ]
+      "tokenId": "1123",
+      "image": "/media/nft/p1.jpg",
+      "usdValue": 500
+    },
+    {
+      "collection": "Sir Nerds",
+      "contract": "0x1234567890abcdef1234567890abcdef12345678",
+      "tokenId": "2445",
+      "image": "/media/nft/p2.jpg",
+      "usdValue": 650
+    },
+    {
+      "collection": "Sir Nerds",
+      "contract": "0x1234567890abcdef1234567890abcdef12345678",
+      "tokenId": "3377",
+      "image": "/media/nft/p3.jpg",
+      "usdValue": 2377
     }
   ]
 }
