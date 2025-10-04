@@ -1,9 +1,9 @@
 [
   {
     "id": "tx1",
-    "timestamp": "2023-10-01T10:00:00Z",
+    "timestamp": "2025-01-01T10:00:00Z",
     "action": "Sold",
-    "details": "1 Pudgy Penguins #1122",
+    "details": "Pudgy Penguins #1122",
     "value": "+ 2.722 ETH",
     "txHash": "0xabc111",
     "user": {
@@ -14,7 +14,11 @@
       "ens": "buyer123.eth",
       "address": "0xaaaaaaaabbbbbbbbccccccccddddddddeeeeeeee"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "Pudgy Penguins",
       "tokenId": "1122",
@@ -23,7 +27,7 @@
   },
   {
     "id": "tx2",
-    "timestamp": "2023-09-30T14:00:00Z",
+    "timestamp": "2025-09-30T14:00:00Z",
     "action": "Bought",
     "details": "CryptoPunks #1239",
     "value": "- 8 ETH",
@@ -36,7 +40,11 @@
       "ens": "punkdealer.eth",
       "address": "0xbbbbbbbbccccccccddddddddeeeeeeeeffffffff"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "CryptoPunks",
       "tokenId": "1239",
@@ -55,7 +63,11 @@
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": { "address": "0xdepositcontract000000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "token": { "symbol": "ETH", "icon": "/media/token/eth.svg" }
   },
   {
@@ -73,7 +85,11 @@
       "ens": "doodlemaxi.eth",
       "address": "0xccccccccddddddddeeeeeeeeffffffff11111111"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "Doodles",
       "tokenId": "4555",
@@ -95,7 +111,11 @@
       "ens": "traderjoe.eth",
       "address": "0x2222222222222222222222222222222222222222"
     },
-    "chain": { "name": "Avalanche", "icon": "/media/token/avax.svg" },
+    "chain": {
+      "name": "Avalanche",
+      "icon": "/media/token/avax.svg",
+      "chainId": 43114
+    },
     "defi": { "protocol": "Trader Joe", "icon": "/media/defi/joe.svg" }
   },
   {
@@ -110,7 +130,11 @@
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": { "address": "0xstakingcontract000000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "token": { "symbol": "LINK", "icon": "/media/token/link.svg" }
   },
   {
@@ -128,7 +152,11 @@
       "ens": "penguinwhale.eth",
       "address": "0x3333333333333333333333333333333333333333"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "Pudgy Penguins",
       "tokenId": "998",
@@ -147,7 +175,11 @@
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" }
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    }
   },
   {
     "id": "tx9",
@@ -161,7 +193,11 @@
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": { "address": "0xwithdrawcontract0000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "token": { "symbol": "ETH", "icon": "/media/token/eth.svg" }
   },
   {
@@ -179,7 +215,11 @@
       "ens": "doodlecollector.eth",
       "address": "0x4444444444444444444444444444444444444444"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "Doodles",
       "tokenId": "4555",
@@ -198,7 +238,11 @@
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": { "address": "0xavaxdepositsmartcontract00000000000000" },
-    "chain": { "name": "Avalanche", "icon": "/media/token/avax.svg" }
+    "chain": {
+      "name": "Avalanche",
+      "icon": "/media/token/avax.svg",
+      "chainId": 43114
+    }
   },
   {
     "id": "tx12",
@@ -215,7 +259,11 @@
       "ens": "punklord.eth",
       "address": "0x5555555555555555555555555555555555555555"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "CryptoPunks",
       "tokenId": "876",
@@ -237,7 +285,11 @@
       "ens": "aave.eth",
       "address": "0xaave000000000000000000000000000000000000"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "defi": { "protocol": "Aave", "icon": "/media/defi/aave.svg" }
   },
   {
@@ -255,7 +307,11 @@
       "ens": "aave.eth",
       "address": "0xaave000000000000000000000000000000000000"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "defi": { "protocol": "Aave", "icon": "/media/defi/aave.svg" }
   },
   {
@@ -273,7 +329,11 @@
       "ens": "penguinfan.eth",
       "address": "0x6666666666666666666666666666666666666666"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
     "nft": {
       "collection": "Pudgy Penguins",
       "tokenId": "998",
@@ -292,152 +352,440 @@
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" }
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    }
   },
   {
     "id": "tx17",
-    "timestamp": "2024-09-10T08:20:00Z",
-    "action": "Bought",
-    "details": "Azuki #432",
-    "value": "- 5.2 ETH",
+    "timestamp": "2024-08-15T11:20:00Z",
+    "action": "Deposited",
+    "details": "4000 USDT",
+    "value": "+ 4000 USDT",
     "txHash": "0xabca17",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
-    "counterparty": {
-      "ens": "azukimax.eth",
-      "address": "0x7777777777777777777777777777777777777777"
+    "counterparty": { "address": "0xcompounddeposit0000000000000000000000" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
-    "nft": {
-      "collection": "Azuki",
-      "tokenId": "432",
-      "image": "/media/nft/azuki.jpg"
-    }
+    "defi": { "protocol": "Compound", "icon": "/media/defi/compound.svg" }
   },
   {
     "id": "tx18",
-    "timestamp": "2024-10-25T14:55:00Z",
-    "action": "Deposited",
-    "details": "2.5 ETH",
-    "value": "+ 2.5 ETH",
+    "timestamp": "2024-09-01T17:05:00Z",
+    "action": "Borrowed",
+    "details": "2000 DAI",
+    "value": "+ 2000 DAI",
     "txHash": "0xabca18",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
-    "counterparty": { "address": "0xdepositcontract000000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
-    "token": { "symbol": "ETH", "icon": "/media/token/eth.svg" }
+    "counterparty": {
+      "ens": "makerdao.eth",
+      "address": "0xmakerdao0000000000000000000000000000000"
+    },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "MakerDAO", "icon": "/media/defi/maker.svg" }
   },
   {
     "id": "tx19",
-    "timestamp": "2024-11-11T22:40:00Z",
-    "action": "Withdrew",
-    "details": "450 USDC",
-    "value": "- 450 USDC",
+    "timestamp": "2024-09-15T13:30:00Z",
+    "action": "Staked",
+    "details": "150 GMX",
+    "value": "- 150 GMX",
     "txHash": "0xabca19",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
-    "counterparty": { "address": "0xwithdrawcontract0000000000000000000000" },
-    "chain": { "name": "Avalanche", "icon": "/media/token/avax.svg" },
-    "token": { "symbol": "USDC", "icon": "/media/token/usdc.svg" }
+    "counterparty": {
+      "ens": "gmx.eth",
+      "address": "0xgmxstaking0000000000000000000000000000"
+    },
+    "chain": {
+      "name": "Arbitrum",
+      "icon": "/media/token/arb.svg",
+      "chainId": 42161
+    },
+    "defi": { "protocol": "GMX", "icon": "/media/defi/gmx.svg" }
   },
   {
     "id": "tx20",
-    "timestamp": "2025-01-02T10:30:00Z",
-    "action": "Bought",
-    "details": "CryptoPunks #3344",
-    "value": "- 9 ETH",
+    "timestamp": "2024-09-30T21:10:00Z",
+    "action": "Unstaked",
+    "details": "150 GMX",
+    "value": "+ 150 GMX",
     "txHash": "0xabca20",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": {
-      "ens": "punkcollector.eth",
-      "address": "0x8888888888888888888888888888888888888888"
+      "ens": "gmx.eth",
+      "address": "0xgmxstaking0000000000000000000000000000"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
-    "nft": {
-      "collection": "CryptoPunks",
-      "tokenId": "3344",
-      "image": "/media/nft/punk.png"
-    }
-  },
-  {
-    "id": "tx21",
-    "timestamp": "2025-02-14T17:45:00Z",
-    "action": "Staked",
-    "details": "700 AVAX",
-    "value": "- 700 AVAX",
-    "txHash": "0xabca21",
-    "user": {
-      "ens": "lilthing.eth",
-      "address": "0x1111111111111111111111111111111111111111"
+    "chain": {
+      "name": "Arbitrum",
+      "icon": "/media/token/arb.svg",
+      "chainId": 42161
     },
-    "counterparty": {
-      "ens": "benqi.eth",
-      "address": "0x9999999999999999999999999999999999999999"
-    },
-    "chain": { "name": "Avalanche", "icon": "/media/token/avax.svg" },
-    "defi": { "protocol": "Benqi", "icon": "/media/defi/benqi.svg" }
+    "defi": { "protocol": "GMX", "icon": "/media/defi/gmx.svg" }
   },
   {
     "id": "tx22",
-    "timestamp": "2025-03-09T13:30:00Z",
-    "action": "Unstaked",
-    "details": "700 AVAX",
-    "value": "+ 700 AVAX",
+    "timestamp": "2024-10-20T18:25:00Z",
+    "action": "Deposited",
+    "details": "2 ETH",
+    "value": "+ 2 ETH",
     "txHash": "0xabca22",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": {
-      "ens": "benqi.eth",
-      "address": "0x9999999999999999999999999999999999999999"
+      "ens": "lido.eth",
+      "address": "0xlidostaking0000000000000000000000000000"
     },
-    "chain": { "name": "Avalanche", "icon": "/media/token/avax.svg" },
-    "defi": { "protocol": "Benqi", "icon": "/media/defi/benqi.svg" }
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Lido", "icon": "/media/defi/lido.svg" }
   },
   {
     "id": "tx23",
-    "timestamp": "2025-04-18T09:05:00Z",
-    "action": "Sold",
-    "details": "Azuki #432",
-    "value": "+ 6.1 ETH",
+    "timestamp": "2024-11-05T12:50:00Z",
+    "action": "Withdrew",
+    "details": "2 stETH",
+    "value": "- 2 stETH",
     "txHash": "0xabca23",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
     "counterparty": {
-      "ens": "azukilover.eth",
-      "address": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "ens": "lido.eth",
+      "address": "0xlidostaking0000000000000000000000000000"
     },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" },
-    "nft": {
-      "collection": "Azuki",
-      "tokenId": "432",
-      "image": "/media/nft/azuki.jpg"
-    }
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Lido", "icon": "/media/defi/lido.svg" }
   },
   {
     "id": "tx24",
-    "timestamp": "2025-05-30T20:15:00Z",
-    "action": "Swapped",
-    "details": "1000 USDT → 0.45 ETH",
-    "value": "+ 0.45 ETH",
+    "timestamp": "2023-11-15T16:15:00Z",
+    "action": "Provided Liquidity",
+    "details": "ETH/USDC (5000 USD)",
+    "value": "+ LP Position",
     "txHash": "0xabca24",
     "user": {
       "ens": "lilthing.eth",
       "address": "0x1111111111111111111111111111111111111111"
     },
-    "counterparty": { "address": "0xsushiswap000000000000000000000000000000" },
-    "chain": { "name": "Ethereum", "icon": "/media/token/eth.svg" }
+    "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Uniswap V3", "icon": "/media/defi/uniswap.svg" }
+  },
+  {
+    "id": "tx25",
+    "timestamp": "2025-07-05T09:45:00Z",
+    "action": "Swapped",
+    "details": "1 ETH → 3100 USDC",
+    "value": "+ 3100 USDC",
+    "txHash": "0xabca25",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Uniswap V3", "icon": "/media/defi/uniswap.svg" }
+  },
+  {
+    "id": "tx26",
+    "timestamp": "2025-07-20T14:10:00Z",
+    "action": "Deposited",
+    "details": "2500 USDC",
+    "value": "+ 2500 USDC",
+    "txHash": "0xabca26",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xcompounddeposit0000000000000000000000" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Compound", "icon": "/media/defi/compound.svg" }
+  },
+  {
+    "id": "tx28",
+    "timestamp": "2024-08-18T11:05:00Z",
+    "action": "Provided Liquidity",
+    "details": "ETH/USDC (7000 USD)",
+    "value": "+ LP Position",
+    "txHash": "0xabca28",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Uniswap V3", "icon": "/media/defi/uniswap.svg" }
+  },
+  {
+    "id": "tx29",
+    "timestamp": "2025-09-10T06:50:00Z",
+    "action": "Deposited",
+    "details": "1.5 ETH",
+    "value": "+ 1.5 ETH",
+    "txHash": "0xabca29",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": {
+      "ens": "lido.eth",
+      "address": "0xlidostaking0000000000000000000000000000"
+    },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "Lido", "icon": "/media/defi/lido.svg" }
+  },
+  {
+    "id": "tx30",
+    "timestamp": "2025-10-04T04:30:00Z",
+    "action": "Borrowed",
+    "details": "1200 DAI",
+    "value": "+ 1200 DAI",
+    "txHash": "0xabca30",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": {
+      "ens": "makerdao.eth",
+      "address": "0xmakerdao0000000000000000000000000000000"
+    },
+    "chain": {
+      "name": "Ethereum",
+      "icon": "/media/token/eth.svg",
+      "chainId": 1
+    },
+    "defi": { "protocol": "MakerDAO", "icon": "/media/defi/maker.svg" }
+  },
+  {
+    "id": "tx31",
+    "timestamp": "2025-09-06T13:25:00Z",
+    "action": "Received",
+    "details": "250 USDC ",
+    "value": "+ 250 USDC",
+    "txHash": "0xfeed3100a1",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xabcdeffedcba000000000000000000000000abcd" },
+    "chain": {
+      "name": "Arbitrum",
+      "icon": "/media/token/arb.svg",
+      "chainId": 42161
+    },
+    "token": { "symbol": "USDC", "icon": "/media/token/usdc.svg" }
+  },
+  {
+    "id": "tx32",
+    "timestamp": "2025-09-09T08:40:00Z",
+    "action": "Swapped",
+    "details": "50 USDC → 0.012 ETH",
+    "value": "- 50 USDC",
+    "txHash": "0xfeed3200b2",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
+    "chain": {
+      "name": "Arbitrum",
+      "icon": "/media/token/arb.svg",
+      "chainId": 42161
+    }
+  },
+  {
+    "id": "tx33",
+    "timestamp": "2025-09-12T21:05:00Z",
+    "action": "Received",
+    "details": "1.2 AVAX ",
+    "value": "+ 1.2 AVAX",
+    "txHash": "0xfeed3300c3",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xdeadbeef00000000000000000000000000feed" },
+    "chain": {
+      "name": "Avalanche",
+      "icon": "/media/token/avax.svg",
+      "chainId": 43114
+    },
+    "token": { "symbol": "AVAX", "icon": "/media/token/avax.svg" }
+  },
+  {
+    "id": "tx34",
+    "timestamp": "2025-09-15T16:30:00Z",
+    "action": "Swapped",
+    "details": "100 AVAX → 2600 USDC",
+    "value": "+ 2600 USDC",
+    "txHash": "0xfeed3400d4",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xpangolinpool0000000000000000000000000" },
+    "chain": {
+      "name": "Avalanche",
+      "icon": "/media/token/avax.svg",
+      "chainId": 43114
+    }
+  },
+  {
+    "id": "tx35",
+    "timestamp": "2025-09-18T19:55:00Z",
+    "action": "Received",
+    "details": "800 DAI ",
+    "value": "+ 800 DAI",
+    "txHash": "0xfeed3500e5",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0x1234567890abcdef0000000000000000aaaabbbb" },
+    "chain": {
+      "name": "BNB Chain",
+      "icon": "/media/token/bnb.svg",
+      "chainId": 56
+    },
+    "token": { "symbol": "DAI", "icon": "/media/token/dai.svg" }
+  },
+  {
+    "id": "tx36",
+    "timestamp": "2025-09-22T11:10:00Z",
+    "action": "Swapped",
+    "details": "0.5 BNB → 130 USDC",
+    "value": "+ 130 USDC",
+    "txHash": "0xfeed3600f6",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xpancakeswappool00000000000000000000000" },
+    "chain": {
+      "name": "BNB Chain",
+      "icon": "/media/token/bnb.svg",
+      "chainId": 56
+    }
+  },
+  {
+    "id": "tx37",
+    "timestamp": "2025-09-25T22:20:00Z",
+    "action": "Received",
+    "details": "75 GMX ",
+    "value": "+ 75 GMX",
+    "txHash": "0xfeed3700a7",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xfeedface00000000000000000000000000cafe01" },
+    "chain": {
+      "name": "Arbitrum",
+      "icon": "/media/token/arb.svg",
+      "chainId": 42161
+    },
+    "token": { "symbol": "GMX", "icon": "/media/token/gmx.svg" }
+  },
+  {
+    "id": "tx38",
+    "timestamp": "2025-09-28T07:45:00Z",
+    "action": "Swapped",
+    "details": "200 USDC → 195 DAI",
+    "value": "- 200 USDC",
+    "txHash": "0xfeed3800b8",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xsuiswap00000000000000000000000000000000" },
+    "chain": { "name": "Sui", "icon": "/media/token/sui.svg", "chainId": 77777 }
+  },
+  {
+    "id": "tx39",
+    "timestamp": "2025-10-01T15:35:00Z",
+    "action": "Received",
+    "details": "15 SUI ",
+    "value": "+ 15 SUI",
+    "txHash": "0xfeed3900c9",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xbeefbeef00000000000000000000000000beef" },
+    "chain": {
+      "name": "Sui",
+      "icon": "/media/token/sui.svg",
+      "chainId": 77777
+    },
+    "token": { "symbol": "SUI", "icon": "/media/token/sui.svg" }
+  },
+  {
+    "id": "tx40",
+    "timestamp": "2025-10-03T18:50:00Z",
+    "action": "Swapped",
+    "details": "40 USDC → 38 DAI",
+    "value": "- 40 USDC",
+    "txHash": "0xfeed4000da",
+    "user": {
+      "ens": "lilthing.eth",
+      "address": "0x1111111111111111111111111111111111111111"
+    },
+    "counterparty": { "address": "0xuniswapv3pool0000000000000000000000000" },
+    "chain": {
+      "name": "Arbitrum",
+      "icon": "/media/token/arb.svg",
+      "chainId": 42161
+    }
   }
 ]

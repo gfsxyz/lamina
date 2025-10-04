@@ -14,9 +14,16 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import { cn } from "@/lib/utils";
 
-const Defi = ({ defiValues }: { defiValues: number }) => {
-  const { data } = trpc.portfolio.getDefi.useQuery();
+const Defi = ({
+  defiValues,
+  chainId,
+}: {
+  defiValues: number;
+  chainId?: number;
+}) => {
+  const { data } = trpc.portfolio.getDefi.useQuery({ chainId: chainId });
 
   return (
     <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
@@ -27,14 +34,20 @@ const Defi = ({ defiValues }: { defiValues: number }) => {
         <div>{usd(defiValues)}</div>
       </div>
 
-      <Table>
+      {!data ||
+        (data.length === 0 && (
+          <div className="text-sm text-muted-foreground text-center my-4">
+            No ositions found
+          </div>
+        ))}
+
+      <Table className={cn(!data || (data.length === 0 && "hidden"))}>
         <TableHeader>
           <TableRow className="bg-primary/30">
             <TableHead>Protocol</TableHead>
             <TableHead className="text-right">Value</TableHead>
           </TableRow>
         </TableHeader>
-
         <TableBody>
           {data?.map((item) => (
             <TableRow key={item.protocol + item.position}>
@@ -67,7 +80,7 @@ const Defi = ({ defiValues }: { defiValues: number }) => {
         </TableBody>
       </Table>
 
-      <div className="flex justify-between">
+      <div className={cn(data?.length === 0 && "hidden")}>
         <Button
           variant={"link"}
           size={"sm"}

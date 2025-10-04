@@ -14,13 +14,21 @@ import { Profile, trpc } from "@/lib/trpc";
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { getChainBreakdown } from "@/lib/utils";
 
-const Wallet = ({ profile }: { profile: Profile | undefined }) => {
+const Wallet = ({
+  profile,
+  chainId,
+}: {
+  profile: Profile | undefined;
+  chainId?: number;
+}) => {
   const { data: prices } = trpc.portfolio.getPrices.useQuery();
   const { data: tokens } = trpc.portfolio.getTokens.useQuery({
     count: 5,
     sortBy: "usdValue",
     order: "desc",
+    chainId: chainId,
   });
 
   return (
@@ -29,7 +37,15 @@ const Wallet = ({ profile }: { profile: Profile | undefined }) => {
         <Link href={"#"} className="hover:underline underline-offset-4">
           <h2>Wallet</h2>
         </Link>
-        <div>{usd(profile?.netWorth.breakdown.tokens ?? 0)}</div>
+        <div>
+          {chainId
+            ? usd(
+                profile
+                  ? getChainBreakdown({ chainId, data: profile })?.tokens ?? 0
+                  : 0
+              )
+            : usd(profile?.netWorth.breakdown.tokens ?? 0)}
+        </div>
       </div>
 
       <Table>

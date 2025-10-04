@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { trpc } from "@/lib/trpc";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,6 +15,18 @@ const ProfileHeader = () => {
 
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("isFollowing");
+    if (stored) {
+      setIsFollowing(stored === "true");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isFollowing", String(isFollowing));
+  }, [isFollowing]);
 
   const handleCopy = async (address: string) => {
     if (!address) return;
@@ -127,8 +139,13 @@ const ProfileHeader = () => {
               </Button>
             </div>
 
-            <Button size={"sm"} className="h-7">
-              Follow
+            <Button
+              size="sm"
+              variant={isFollowing ? "outline" : "default"}
+              className="h-7"
+              onClick={() => setIsFollowing((prev) => !prev)}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
             </Button>
           </div>
 

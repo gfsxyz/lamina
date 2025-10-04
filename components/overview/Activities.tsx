@@ -6,9 +6,10 @@ import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-const Activities = () => {
+const Activities = ({ chainId }: { chainId?: number }) => {
   const { data } = trpc.portfolio.getActivities.useQuery({
     limit: 18,
+    chainId: chainId,
   });
 
   return (

@@ -6,9 +6,18 @@ import { ArrowRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-const Nft = ({ nftValues }: { nftValues: number }) => {
-  const { data } = trpc.portfolio.getNfts.useQuery();
+const Nft = ({
+  nftValues,
+  chainId,
+}: {
+  nftValues: number;
+  chainId?: number;
+}) => {
+  const { data } = trpc.portfolio.getNfts.useQuery({
+    chainId: chainId,
+  });
 
   return (
     <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
@@ -20,6 +29,13 @@ const Nft = ({ nftValues }: { nftValues: number }) => {
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-2">
+        {!data ||
+          (data?.length === 0 && (
+            <div className="text-sm text-muted-foreground mx-auto my-4">
+              No NFTs found
+            </div>
+          ))}
+
         {data?.slice(0, 3).map((nft) => (
           <Link href="#" className="border rounded-2xl group" key={nft.tokenId}>
             <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
@@ -50,7 +66,12 @@ const Nft = ({ nftValues }: { nftValues: number }) => {
         ))}
       </div>
 
-      <div className="flex justify-between">
+      <div
+        className={cn(
+          "flex justify-between",
+          !data || (data?.length === 0 && "hidden")
+        )}
+      >
         <Button
           variant={"link"}
           size={"sm"}

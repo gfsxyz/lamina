@@ -10,12 +10,44 @@
     "following": 234,
     "earnings": 2477.26,
     "netWorth": {
-      "usd": 350422,
+      "usd": 417930.26,
       "changePercent": 4.79,
       "breakdown": {
         "tokens": 301222,
         "defi": 30100,
-        "nfts": 19000
+        "nfts": 25827.0
+      },
+      "chain_breakdown": {
+        "1": {
+          "tokens": 204500.55,
+          "defi": 29011.0,
+          "nfts": 25827.0,
+          "total": 259338.55
+        },
+        "56": {
+          "tokens": 30040.74,
+          "defi": 0.0,
+          "nfts": 0.0,
+          "total": 30040.74
+        },
+        "43114": {
+          "tokens": 24200.0,
+          "defi": 0.0,
+          "nfts": 0.0,
+          "total": 24200.0
+        },
+        "42161": {
+          "tokens": 65200.0,
+          "defi": 5300.0,
+          "nfts": 0.0,
+          "total": 70500.0
+        },
+        "77777": {
+          "tokens": 33850.97,
+          "defi": 0.0,
+          "nfts": 0.0,
+          "total": 33850.97
+        }
       }
     },
     "links": {
@@ -176,6 +208,7 @@
     {
       "protocol": "Curve",
       "chain": "Ethereum",
+      "chainId": 1,
       "position": "Liquidity Pool",
       "icon": "/media/defi/curve.svg",
       "assets": [
@@ -190,6 +223,7 @@
     {
       "protocol": "Uniswap V3",
       "chain": "Ethereum",
+      "chainId": 1,
       "position": "Liquidity Pool",
       "icon": "/media/defi/uniswap.svg",
       "assets": [
@@ -204,6 +238,7 @@
     {
       "protocol": "GMX",
       "chain": "Arbitrum",
+      "chainId": 42161,
       "position": "Staking",
       "icon": "/media/defi/gmx.svg",
       "assets": [
@@ -218,6 +253,7 @@
     {
       "protocol": "Lido",
       "chain": "Ethereum",
+      "chainId": 1,
       "position": "Liquidity Pool",
       "icon": "/media/defi/lido.svg",
       "assets": [
@@ -236,49 +272,56 @@
       "contract": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
       "tokenId": "1122",
       "image": "/media/nft/pengu1.jpg",
-      "usdValue": 4200
+      "usdValue": 4200,
+      "chainId": 1
     },
     {
       "collection": "Pudgy Penguins",
       "contract": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
       "tokenId": "2988",
       "image": "/media/nft/pengu2.jpg",
-      "usdValue": 3900
+      "usdValue": 3900,
+      "chainId": 1
     },
     {
       "collection": "CryptoPunks",
       "contract": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
       "tokenId": "1239",
       "image": "/media/nft/punk.png",
-      "usdValue": 8000
+      "usdValue": 8000,
+      "chainId": 1
     },
     {
       "collection": "Doodles",
       "contract": "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e",
       "tokenId": "4555",
       "image": "/media/nft/dood.jpg",
-      "usdValue": 6200
+      "usdValue": 6200,
+      "chainId": 1
     },
     {
       "collection": "Sir Nerds",
       "contract": "0x1234567890abcdef1234567890abcdef12345678",
       "tokenId": "1123",
       "image": "/media/nft/p1.jpg",
-      "usdValue": 500
+      "usdValue": 500,
+      "chainId": 1
     },
     {
       "collection": "Sir Nerds",
       "contract": "0x1234567890abcdef1234567890abcdef12345678",
       "tokenId": "2445",
       "image": "/media/nft/p2.jpg",
-      "usdValue": 650
+      "usdValue": 650,
+      "chainId": 1
     },
     {
       "collection": "Sir Nerds",
       "contract": "0x1234567890abcdef1234567890abcdef12345678",
       "tokenId": "3377",
       "image": "/media/nft/p3.jpg",
-      "usdValue": 2377
+      "usdValue": 2377,
+      "chainId": 1
     }
   ]
 }

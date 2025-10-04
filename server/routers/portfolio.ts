@@ -5,6 +5,10 @@ import user from "@/server/data/user.json";
 import prices from "@/server/data/prices.json";
 import activities from "@/server/data/activities.json";
 
+const chainFilter = z.object({
+  chainId: z.number().optional(),
+});
+
 export const portfolioRouter = router({
   getUser: publicProcedure.query(() => user), //get all user's data
 
@@ -12,30 +16,63 @@ export const portfolioRouter = router({
     return { ...user.profile, address: user.address, ens: user.ens };
   }),
 
-  getPortofolio: publicProcedure.query(() => user.portfolio),
+  // Portfolio with chain filter
+  getPortofolio: publicProcedure
+    .input(chainFilter.optional())
+    .query(({ input }) => {
+      if (input?.chainId) {
+        return user.portfolio.filter((c) => c.chainId === input.chainId);
+      }
+      return user.portfolio;
+    }),
 
   getPrices: publicProcedure.query(() => prices),
 
-  getNfts: publicProcedure.query(() => user.nfts),
+  // NFTs with chain filter
+  getNfts: publicProcedure.input(chainFilter.optional()).query(({ input }) => {
+    let nfts = [...user.nfts];
+    if (input?.chainId) {
+      nfts = nfts.filter((n) => n.chainId === input.chainId);
+    }
+    return nfts;
+  }),
 
-  getDefi: publicProcedure.query(() => user.defi),
+  // DeFi with chain filter
+  getDefi: publicProcedure.input(chainFilter.optional()).query(({ input }) => {
+    let defi = [...user.defi];
+    if (input?.chainId) {
+      defi = defi.filter((d) => d.chainId === input.chainId);
+    }
+    return defi;
+  }),
 
+  // Activities with chain filter + sort + limit
   getActivities: publicProcedure
     .input(
       z
         .object({
           limit: z.number().min(1).max(100).optional(),
           sort: z.enum(["asc", "desc"]).optional().default("desc"),
+          chainId: z.number().optional(),
         })
         .optional()
     )
     .query(({ input }) => {
-      let sorted = [...activities].sort((a, b) =>
+      let sorted = [...activities];
+
+      // filter by chain
+      if (input?.chainId) {
+        sorted = sorted.filter((a) => a.chain.chainId === input.chainId);
+      }
+
+      // sort
+      sorted = sorted.sort((a, b) =>
         input?.sort === "asc"
           ? new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
           : new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
       );
 
+      // limit
       if (input?.limit) {
         sorted = sorted.slice(0, input.limit);
       }
@@ -43,6 +80,7 @@ export const portfolioRouter = router({
       return sorted;
     }),
 
+  // Tokens with chain filter + sort + count
   getTokens: publicProcedure
     .input(
       z
@@ -97,7 +135,7 @@ export const portfolioRouter = router({
         });
       }
 
-      //count limit
+      // count limit
       if (input?.count) {
         tokens = tokens.slice(0, input.count);
       }
