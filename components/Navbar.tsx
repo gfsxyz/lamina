@@ -5,7 +5,7 @@ import SearchBox from "./SearchBox";
 const Navbar = () => {
   return (
     <nav className="wrapper py-4 flex items-center justify-between">
-      <div className="flex gap-14 w-full max-w-2xl">
+      <div className="flex gap-14 w-full max-w-2xl pr-4">
         <div className="flex items-center gap-3.5">
           <Image src="/logo2.png" alt="lamina logo" width={40} height={40} />
           <span className="font-bold text-[1.375rem] leading-none">Lamina</span>

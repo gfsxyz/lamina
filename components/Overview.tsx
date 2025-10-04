@@ -13,7 +13,7 @@ const Overview = () => {
   const searchParams = useSearchParams();
   const chainId = Number(searchParams.get("c"));
   return (
-    <div className="wrapper py-4 grid grid-cols-2 gap-4">
+    <div className="wrapper py-4 grid grid-cols-[repeat(auto-fit,minmax(380px,1fr))] gap-4">
       <div className="space-y-4">
         <Wallet profile={data} chainId={chainId} />
         <Nft

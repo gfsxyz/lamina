@@ -91,7 +91,7 @@ const ProfileHeader = () => {
 
   return (
     <header className="wrapper py-6">
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 flex-col sm:flex-row sm:items-center">
         <Image
           alt={`${data?.displayName} profile picture`}
           src={data?.avatar || "/placeholder.jpg"}
@@ -100,7 +100,7 @@ const ProfileHeader = () => {
           className={"rounded-xl"}
         />
 
-        <div>
+        <div className="w-full max-w-fit">
           <div className="font-semibold flex items-center gap-4">
             <div className="text-lg">{data?.ens ?? "Unknown"}</div>
             <div className="flex items-center gap-2">
@@ -151,7 +151,7 @@ const ProfileHeader = () => {
 
           <Tooltip open={open} onOpenChange={setOpen}>
             <TooltipTrigger
-              className="flex gap-2 w-full max-w-96 overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground pr-2 text-sm leading-8 cursor-pointer hover:underline"
+              className="flex gap-2 text-muted-foreground pr-2 text-sm leading-8 cursor-pointer hover:underline"
               onClick={() => handleCopy(data?.address || "")}
             >
               {data?.address || "0x0000...0000"}
@@ -168,7 +168,7 @@ const ProfileHeader = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-8 mt-8">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 mt-8 max-w-[32rem] items-center">
         <div>
           <div className="text-sm text-muted-foreground font-medium">
             Following

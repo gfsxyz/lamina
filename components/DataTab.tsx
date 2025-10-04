@@ -45,7 +45,7 @@ const DataTab = () => {
 
   return (
     <>
-      <div className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4">
+      <div className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4 overflow-x-auto">
         <Button size={"sm"} variant={"ghost"} className="bg-primary/50">
           Overview
         </Button>
@@ -63,7 +63,7 @@ const DataTab = () => {
         </Button>
       </div>
 
-      <div className="wrapper py-3 flex items-center gap-2 [&_button]:text-xs">
+      <div className="wrapper py-3 flex items-center gap-2 [&_button]:text-xs overflow-x-auto">
         <Button
           size={"sm"}
           variant={"ghost"}

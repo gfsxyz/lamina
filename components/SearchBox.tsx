@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function SearchBox() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,16 +27,23 @@ export default function SearchBox() {
   }, []);
 
   return (
-    <div className="relative w-full">
-      <Search className="opacity-50 absolute top-3.5 left-2.5" size={16} />
-      <Input
-        ref={inputRef}
-        placeholder="Search address, Nfts, tokens..."
-        className="px-10"
-      />
-      <div className="text-center rounded border text-primary-foreground/50 absolute right-2.5 top-3.5 text-xs size-5 select-none hidden sm:block">
-        K
+    <>
+      <div className="sm:hidden ml-auto">
+        <Button variant={"outline"} size={"icon"}>
+          <Search />
+        </Button>
       </div>
-    </div>
+      <div className="relative w-full hidden sm:block">
+        <Search className="opacity-50 absolute top-3.5 left-2.5" size={16} />
+        <Input
+          ref={inputRef}
+          placeholder="Search address, Nfts, tokens..."
+          className="px-10"
+        />
+        <div className="text-center rounded border text-primary-foreground/50 absolute right-2.5 top-3.5 text-xs size-5 select-none hidden sm:block">
+          K
+        </div>
+      </div>
+    </>
   );
 }
