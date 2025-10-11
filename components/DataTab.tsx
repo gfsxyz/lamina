@@ -6,27 +6,14 @@ import { trpc } from "@/lib/trpc";
 import Image from "next/image";
 import { usd } from "@/lib/currency";
 import { useMemo } from "react";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const DataTab = () => {
+  const router = useRouter();
   const { data } = trpc.portfolio.getPortofolio.useQuery();
   const searchParams = useSearchParams();
   const chainId = searchParams.get("c");
-
-  const removeChainFilter = () => {
-    if (typeof window === "undefined") return;
-
-    const params = new URLSearchParams(window.location.search);
-
-    params.delete("c");
-
-    const newQueryString = params.toString();
-    const pathname = window.location.pathname;
-    const newUrl = `${pathname}${newQueryString ? "?" + newQueryString : ""}`;
-    window.history.replaceState(null, "", newUrl);
-  };
 
   const portfolio = useMemo(() => {
     if (!data) return [];
@@ -42,6 +29,20 @@ const DataTab = () => {
       };
     });
   }, [data]);
+
+  const handleChainFilter = (chainId: string) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("c", chainId);
+
+    router.replace(`/?${newParams.toString()}`, { scroll: false });
+  };
+
+  const removeChainFilter = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete("c");
+
+    router.replace(`/?${newParams.toString()}`, { scroll: false });
+  };
 
   return (
     <>
@@ -82,12 +83,10 @@ const DataTab = () => {
               Number(chainId) === item.chainId && "bg-primary/50",
               "text-xs"
             )}
+            onClick={() => handleChainFilter(String(item.chainId))}
             asChild
           >
-            <Link
-              href={`/?c=${item.chainId}`}
-              className="flex items-center gap-2"
-            >
+            <div className="flex items-center gap-2">
               <div className="size-4 relative">
                 <Image
                   src={item.icon}
@@ -97,7 +96,7 @@ const DataTab = () => {
                 />
               </div>
               {usd(item.totalUsdValue)}
-            </Link>
+            </div>
           </Button>
         ))}
       </div>
