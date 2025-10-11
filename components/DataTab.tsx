@@ -8,10 +8,11 @@ import { usd } from "@/lib/currency";
 import { useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "./ui/skeleton";
 
 const DataTab = () => {
   const router = useRouter();
-  const { data } = trpc.portfolio.getPortofolio.useQuery();
+  const { data, isLoading } = trpc.portfolio.getPortofolio.useQuery();
   const searchParams = useSearchParams();
   const chainId = searchParams.get("c");
 
@@ -44,6 +45,18 @@ const DataTab = () => {
     router.replace(`/?${newParams.toString()}`, { scroll: false });
   };
 
+  const LoadStateComponent = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center gap-2 overflow-x-auto">
+          <Skeleton className="w-32 h-9" />
+          <Skeleton className="w-32 h-9" />
+          <Skeleton className="w-32 h-9" />
+        </div>
+      );
+    }
+  };
+
   return (
     <>
       <div className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4 overflow-x-auto">
@@ -73,6 +86,9 @@ const DataTab = () => {
         >
           <LayoutGrid /> All
         </Button>
+
+        <LoadStateComponent />
+
         {portfolio?.map((item) => (
           <Button
             size={"sm"}

@@ -15,6 +15,7 @@ import {
   TableRow,
 } from "../ui/table";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "../ui/skeleton";
 
 const Defi = ({
   defiValues,
@@ -23,74 +24,80 @@ const Defi = ({
   defiValues: number;
   chainId?: number;
 }) => {
-  const { data } = trpc.portfolio.getDefi.useQuery({ chainId: chainId });
+  const { data, isLoading } = trpc.portfolio.getDefi.useQuery({
+    chainId: chainId,
+  });
 
-  return (
-    <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
-      <div className="text-lg font-semibold flex items-center justify-between">
-        <Link href={"#"} className="hover:underline underline-offset-4">
-          <h2>Defi</h2>
-        </Link>
-        <div>{usd(defiValues)}</div>
-      </div>
+  if (isLoading) {
+    return <Skeleton className="w-full rounded-xl border shadow-sm h-96" />;
+  } else {
+    return (
+      <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
+        <div className="text-lg font-semibold flex items-center justify-between">
+          <Link href={"#"} className="hover:underline underline-offset-4">
+            <h2>Defi</h2>
+          </Link>
+          <div>{usd(defiValues)}</div>
+        </div>
 
-      {!data ||
-        (data.length === 0 && (
-          <div className="text-sm text-muted-foreground text-center my-4">
-            No ositions found
-          </div>
-        ))}
-
-      <Table className={cn(!data || (data.length === 0 && "hidden"))}>
-        <TableHeader>
-          <TableRow className="bg-primary/30">
-            <TableHead>Protocol</TableHead>
-            <TableHead className="text-right">Value</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data?.map((item) => (
-            <TableRow key={item.protocol + item.position}>
-              <TableCell className="flex items-center gap-2 font-semibold">
-                <div className="size-8 relative">
-                  <Image
-                    src={item.icon}
-                    alt={`${item.protocol} logo`}
-                    fill
-                    sizes="32"
-                  />
-                </div>
-                <div>
-                  <Link
-                    href={"#"}
-                    className="hover:underline underline-offset-2"
-                  >
-                    {item.protocol}
-                  </Link>
-                  <div className="text-muted-foreground text-xs">
-                    {item.chain}
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell className="text-right">
-                {usd(item.assets[0].usdValue)}
-              </TableCell>
-            </TableRow>
+        {!data ||
+          (data.length === 0 && (
+            <div className="text-sm text-muted-foreground text-center my-4">
+              No ositions found
+            </div>
           ))}
-        </TableBody>
-      </Table>
 
-      <div className={cn(data?.length === 0 && "hidden")}>
-        <Button
-          variant={"link"}
-          size={"sm"}
-          className="ml-auto text-primary-foreground"
-          style={{ padding: "0" }}
-        >
-          View all <ArrowRight />
-        </Button>
-      </div>
-    </section>
-  );
+        <Table className={cn(!data || (data.length === 0 && "hidden"))}>
+          <TableHeader>
+            <TableRow className="bg-primary/30">
+              <TableHead>Protocol</TableHead>
+              <TableHead className="text-right">Value</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data?.map((item) => (
+              <TableRow key={item.protocol + item.position}>
+                <TableCell className="flex items-center gap-2 font-semibold">
+                  <div className="size-8 relative">
+                    <Image
+                      src={item.icon}
+                      alt={`${item.protocol} logo`}
+                      fill
+                      sizes="32"
+                    />
+                  </div>
+                  <div>
+                    <Link
+                      href={"#"}
+                      className="hover:underline underline-offset-2"
+                    >
+                      {item.protocol}
+                    </Link>
+                    <div className="text-muted-foreground text-xs">
+                      {item.chain}
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="text-right">
+                  {usd(item.assets[0].usdValue)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+
+        <div className={cn(data?.length === 0 && "hidden", "flex")}>
+          <Button
+            variant={"link"}
+            size={"sm"}
+            className="ml-auto text-primary-foreground"
+            style={{ padding: "0" }}
+          >
+            View all <ArrowRight />
+          </Button>
+        </div>
+      </section>
+    );
+  }
 };
 export default Defi;
