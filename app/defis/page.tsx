@@ -20,7 +20,8 @@ const Defi = () => {
   const searchParams = useSearchParams();
   const chainId = Number(searchParams.get("c"));
 
-  const { data: profile } = trpc.portfolio.getProfile.useQuery();
+  const { data: profile, isLoading: profileLoading } =
+    trpc.portfolio.getProfile.useQuery();
 
   const { data, isLoading } = trpc.portfolio.getDefi.useQuery({
     chainId: chainId,
@@ -31,9 +32,22 @@ const Defi = () => {
       ? getChainBreakdown({ chainId, data: profile }).defi
       : profile?.netWorth.breakdown.defi ?? 0;
 
-  if (isLoading) {
+  if (isLoading || profileLoading) {
     return (
-      <Skeleton className="wrapper w-full rounded-xl my-6 border shadow-sm h-96" />
+      <div className="wrapper w-full rounded-xl border shadow-sm py-4 px-6 my-6 space-y-4">
+        <div className="flex items-center justify-between gap-2">
+          <Skeleton className="h-7 w-24" />
+          <Skeleton className="h-7 w-36" />
+        </div>
+
+        <div className="space-y-4">
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+        </div>
+      </div>
     );
   } else {
     return (

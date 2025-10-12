@@ -12,7 +12,8 @@ const Nft = () => {
   const searchParams = useSearchParams();
   const chainId = Number(searchParams.get("c"));
 
-  const { data: profile } = trpc.portfolio.getProfile.useQuery();
+  const { data: profile, isLoading: profileLoading } =
+    trpc.portfolio.getProfile.useQuery();
   const { data, isLoading } = trpc.portfolio.getNfts.useQuery({
     chainId: chainId,
   });
@@ -21,9 +22,47 @@ const Nft = () => {
       ? getChainBreakdown({ chainId, data: profile }).nfts
       : profile?.netWorth.breakdown.nfts ?? 0;
 
-  if (isLoading) {
+  if (isLoading || profileLoading) {
     return (
-      <Skeleton className="wrapper w-full rounded-xl my-6 border shadow-sm h-[401px]" />
+      <div className="wrapper w-full rounded-xl border shadow-sm py-4 px-6 my-6 space-y-4">
+        <div className="flex items-center justify-between gap-2">
+          <Skeleton className="h-7 w-24" />
+          <Skeleton className="h-7 w-36" />
+        </div>
+
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-4">
+          <div className="border rounded-2xl">
+            <Skeleton className="aspect-square w-full overflow-hidden rounded-2xl" />
+            <div className="flex flex-col justify-between flex-grow space-y-6 p-3">
+              <Skeleton className="h-4 w-3/4" />
+              <div className="space-y-2">
+                <Skeleton className="h-3 w-24" />
+                <Skeleton className="h-3 w-3/4" />
+              </div>
+            </div>
+          </div>
+          <div className="border rounded-2xl">
+            <Skeleton className="aspect-square w-full overflow-hidden rounded-2xl" />
+            <div className="flex flex-col justify-between flex-grow space-y-6 p-3">
+              <Skeleton className="h-4 w-3/4" />
+              <div className="space-y-2">
+                <Skeleton className="h-3 w-24" />
+                <Skeleton className="h-3 w-3/4" />
+              </div>
+            </div>
+          </div>
+          <div className="border rounded-2xl">
+            <Skeleton className="aspect-square w-full overflow-hidden rounded-2xl" />
+            <div className="flex flex-col justify-between flex-grow space-y-6 p-3">
+              <Skeleton className="h-4 w-3/4" />
+              <div className="space-y-2">
+                <Skeleton className="h-3 w-24" />
+                <Skeleton className="h-3 w-3/4" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   } else {
     return (
@@ -35,7 +74,7 @@ const Nft = () => {
           <div>{usd(nftValues)}</div>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,16rem))] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-2">
           {!data ||
             (data?.length === 0 && (
               <div className="text-sm text-muted-foreground mx-auto my-4">

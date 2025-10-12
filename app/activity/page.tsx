@@ -18,7 +18,30 @@ const Activities = () => {
 
   if (isLoading) {
     return (
-      <Skeleton className="wrapper w-full rounded-xl my-6 border shadow-sm min-h-96" />
+      <div className="wrapper w-full rounded-xl border shadow-sm py-4 px-6 my-6 space-y-4">
+        <Skeleton className="h-7 w-24" />
+
+        <div className="space-y-4">
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+        </div>
+      </div>
     );
   } else {
     return (
