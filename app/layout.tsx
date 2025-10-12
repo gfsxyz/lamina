@@ -4,6 +4,9 @@ import { Providers } from "@/components/Provider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import ProfileHeader from "@/components/ProfileHeader";
+import DataTab from "@/components/DataTab";
 
 const fontFamily = Outfit({
   variable: "--font-outfit-sans",
@@ -88,6 +91,10 @@ export default function RootLayout({
       >
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="dark">
+            <Navbar />
+            <ProfileHeader />
+            <DataTab />
+
             {children}
           </ThemeProvider>
         </Providers>

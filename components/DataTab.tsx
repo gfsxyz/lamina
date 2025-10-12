@@ -6,27 +6,17 @@ import { trpc } from "@/lib/trpc";
 import Image from "next/image";
 import { usd } from "@/lib/currency";
 import { useMemo } from "react";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "./ui/skeleton";
+import Link from "next/link";
 
 const DataTab = () => {
-  const { data } = trpc.portfolio.getPortofolio.useQuery();
+  const router = useRouter();
+  const { data, isLoading } = trpc.portfolio.getPortofolio.useQuery();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const chainId = searchParams.get("c");
-
-  const removeChainFilter = () => {
-    if (typeof window === "undefined") return;
-
-    const params = new URLSearchParams(window.location.search);
-
-    params.delete("c");
-
-    const newQueryString = params.toString();
-    const pathname = window.location.pathname;
-    const newUrl = `${pathname}${newQueryString ? "?" + newQueryString : ""}`;
-    window.history.replaceState(null, "", newUrl);
-  };
 
   const portfolio = useMemo(() => {
     if (!data) return [];
@@ -43,25 +33,76 @@ const DataTab = () => {
     });
   }, [data]);
 
+  const handleChainFilter = (chainId: string) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("c", chainId);
+
+    router.replace(`?${newParams.toString()}`, { scroll: false });
+  };
+
+  const removeChainFilter = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete("c");
+
+    router.replace(`?${newParams.toString()}`, { scroll: false });
+  };
+
+  const LoadStateComponent = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center gap-2 overflow-x-auto">
+          <Skeleton className="w-32 h-9" />
+          <Skeleton className="w-32 h-9" />
+          <Skeleton className="w-32 h-9" />
+        </div>
+      );
+    }
+  };
+
   return (
     <>
-      <div className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4 overflow-x-auto">
-        <Button size={"sm"} variant={"ghost"} className="bg-primary/50">
-          Overview
+      <nav className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4 overflow-x-auto">
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/"}>Overview</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          Tokens
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/tokens" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/tokens"}>Tokens</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          DeFi
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/defis" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/defis"}>DeFi</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          NFTs
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/nfts" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/nfts"}>NFTs</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          Activity
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/activity" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/activity"}>Activity</Link>
         </Button>
-      </div>
+      </nav>
 
       <div className="wrapper py-3 flex items-center gap-2 [&_button]:text-xs overflow-x-auto">
         <Button
@@ -72,6 +113,9 @@ const DataTab = () => {
         >
           <LayoutGrid /> All
         </Button>
+
+        <LoadStateComponent />
+
         {portfolio?.map((item) => (
           <Button
             size={"sm"}
@@ -82,12 +126,10 @@ const DataTab = () => {
               Number(chainId) === item.chainId && "bg-primary/50",
               "text-xs"
             )}
+            onClick={() => handleChainFilter(String(item.chainId))}
             asChild
           >
-            <Link
-              href={`/?c=${item.chainId}`}
-              className="flex items-center gap-2"
-            >
+            <div className="flex items-center gap-2">
               <div className="size-4 relative">
                 <Image
                   src={item.icon}
@@ -97,7 +139,7 @@ const DataTab = () => {
                 />
               </div>
               {usd(item.totalUsdValue)}
-            </Link>
+            </div>
           </Button>
         ))}
       </div>

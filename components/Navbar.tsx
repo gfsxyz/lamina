@@ -24,6 +24,7 @@ const Navbar = () => {
               src="/profile.webp"
               alt="genta profile picture"
               fill
+              sizes="24"
               className="object-cover object-top rounded"
             />
           </div>

@@ -42,7 +42,7 @@ const ProfileHeader = () => {
   if (isLoading) {
     return (
       <header className="wrapper py-6">
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 sm:items-center flex-col sm:flex-row">
           <Skeleton className="w-28 h-28 rounded-xl" />
           <div className="space-y-3">
             <Skeleton className="w-24 h-5" />
@@ -51,7 +51,7 @@ const ProfileHeader = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 sm:gap-8 mt-8">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 mt-8 max-w-[32rem] items-center">
           <div>
             <div className="text-sm text-muted-foreground font-medium">
               Following

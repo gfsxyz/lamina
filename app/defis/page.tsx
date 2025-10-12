@@ -1,8 +1,6 @@
 "use client";
 
 import { usd } from "@/lib/currency";
-import { Button } from "../ui/button";
-import { ArrowRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,28 +11,49 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
-import { cn } from "@/lib/utils";
-import { Skeleton } from "../ui/skeleton";
+} from "@/components/ui/table";
+import { cn, getChainBreakdown } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useSearchParams } from "next/navigation";
 
-const Defi = ({
-  defiValues,
-  chainId,
-}: {
-  defiValues: number;
-  chainId?: number;
-}) => {
+const Defi = () => {
+  const searchParams = useSearchParams();
+  const chainId = Number(searchParams.get("c"));
+
+  const { data: profile, isLoading: profileLoading } =
+    trpc.portfolio.getProfile.useQuery();
+
   const { data, isLoading } = trpc.portfolio.getDefi.useQuery({
     chainId: chainId,
   });
 
-  if (isLoading) {
-    return <Skeleton className="w-full rounded-xl border shadow-sm h-96" />;
+  const defiValues =
+    profile && chainId
+      ? getChainBreakdown({ chainId, data: profile }).defi
+      : profile?.netWorth.breakdown.defi ?? 0;
+
+  if (isLoading || profileLoading) {
+    return (
+      <div className="wrapper w-full rounded-xl border shadow-sm py-4 px-6 my-6 space-y-4">
+        <div className="flex items-center justify-between gap-2">
+          <Skeleton className="h-7 w-24" />
+          <Skeleton className="h-7 w-36" />
+        </div>
+
+        <div className="space-y-4">
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+          <Skeleton className="w-full h-9" />
+        </div>
+      </div>
+    );
   } else {
     return (
-      <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
+      <section className="wrapper w-full rounded-xl py-4 my-6 px-6 space-y-4 border shadow-sm">
         <div className="text-lg font-semibold flex items-center justify-between">
-          <Link href={"/defis"} className="hover:underline underline-offset-4">
+          <Link href={"#"} className="hover:underline underline-offset-4">
             <h2>Defi</h2>
           </Link>
           <div>{usd(defiValues)}</div>
@@ -85,20 +104,6 @@ const Defi = ({
             ))}
           </TableBody>
         </Table>
-
-        <div className={cn(data?.length === 0 && "hidden", "flex")}>
-          <Button
-            variant={"link"}
-            size={"sm"}
-            className="ml-auto text-primary-foreground"
-            style={{ padding: "0" }}
-            asChild
-          >
-            <Link href="/defis">
-              View all <ArrowRight />
-            </Link>
-          </Button>
-        </div>
       </section>
     );
   }
