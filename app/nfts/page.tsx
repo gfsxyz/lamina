@@ -1,39 +1,41 @@
 "use client";
 
 import { usd } from "@/lib/currency";
-import { Button } from "../ui/button";
-import { ArrowRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useSearchParams } from "next/navigation";
+import { getChainBreakdown } from "@/lib/utils";
 
-const Nft = ({
-  nftValues,
-  chainId,
-}: {
-  nftValues: number;
-  chainId?: number;
-}) => {
+const Nft = () => {
+  const searchParams = useSearchParams();
+  const chainId = Number(searchParams.get("c"));
+
+  const { data: profile } = trpc.portfolio.getProfile.useQuery();
   const { data, isLoading } = trpc.portfolio.getNfts.useQuery({
     chainId: chainId,
   });
+  const nftValues =
+    chainId && profile
+      ? getChainBreakdown({ chainId, data: profile }).nfts
+      : profile?.netWorth.breakdown.nfts ?? 0;
+
   if (isLoading) {
     return (
-      <Skeleton className="w-full rounded-xl border shadow-sm h-[401px]" />
+      <Skeleton className="wrapper w-full rounded-xl my-6 border shadow-sm h-[401px]" />
     );
   } else {
     return (
-      <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
+      <section className="wrapper w-full rounded-xl py-4 my-6 px-6 space-y-4 border shadow-sm">
         <div className="text-lg font-semibold flex items-center justify-between">
-          <Link href={"/nfts"} className="hover:underline underline-offset-4">
+          <Link href={"#"} className="hover:underline underline-offset-4">
             <h2>NFT</h2>
           </Link>
           <div>{usd(nftValues)}</div>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,16rem))] gap-2">
           {!data ||
             (data?.length === 0 && (
               <div className="text-sm text-muted-foreground mx-auto my-4">
@@ -75,25 +77,6 @@ const Nft = ({
               </div>
             </Link>
           ))}
-        </div>
-
-        <div
-          className={cn(
-            "flex justify-between",
-            !data || (data?.length === 0 && "hidden")
-          )}
-        >
-          <Button
-            variant={"link"}
-            size={"sm"}
-            className="ml-auto text-primary-foreground"
-            style={{ padding: "0" }}
-            asChild
-          >
-            <Link href="/nfts">
-              View all <ArrowRight />
-            </Link>
-          </Button>
         </div>
       </section>
     );

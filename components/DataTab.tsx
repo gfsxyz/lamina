@@ -6,14 +6,16 @@ import { trpc } from "@/lib/trpc";
 import Image from "next/image";
 import { usd } from "@/lib/currency";
 import { useMemo } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "./ui/skeleton";
+import Link from "next/link";
 
 const DataTab = () => {
   const router = useRouter();
   const { data, isLoading } = trpc.portfolio.getPortofolio.useQuery();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const chainId = searchParams.get("c");
 
   const portfolio = useMemo(() => {
@@ -35,14 +37,14 @@ const DataTab = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("c", chainId);
 
-    router.replace(`/?${newParams.toString()}`, { scroll: false });
+    router.replace(`?${newParams.toString()}`, { scroll: false });
   };
 
   const removeChainFilter = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.delete("c");
 
-    router.replace(`/?${newParams.toString()}`, { scroll: false });
+    router.replace(`?${newParams.toString()}`, { scroll: false });
   };
 
   const LoadStateComponent = () => {
@@ -59,23 +61,48 @@ const DataTab = () => {
 
   return (
     <>
-      <div className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4 overflow-x-auto">
-        <Button size={"sm"} variant={"ghost"} className="bg-primary/50">
-          Overview
+      <nav className="wrapper flex items-center gap-6 border-b border-b-border/50 py-4 overflow-x-auto">
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/"}>Overview</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          Tokens
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/tokens" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/tokens"}>Tokens</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          DeFi
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/defis" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/defis"}>DeFi</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          NFTs
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/nfts" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/nfts"}>NFTs</Link>
         </Button>
-        <Button size={"sm"} variant={"ghost"}>
-          Activity
+        <Button
+          size={"sm"}
+          variant={"ghost"}
+          className={cn(pathname === "/activity" && "bg-primary/50")}
+          asChild
+        >
+          <Link href={"/activity"}>Activity</Link>
         </Button>
-      </div>
+      </nav>
 
       <div className="wrapper py-3 flex items-center gap-2 [&_button]:text-xs overflow-x-auto">
         <Button

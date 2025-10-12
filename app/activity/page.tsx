@@ -1,28 +1,30 @@
+"use client";
+
 import { trpc } from "@/lib/trpc";
 import Image from "next/image";
-import { Table, TableBody, TableCell, TableRow } from "../ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { timeAgo } from "@/lib/utils";
-import { Button } from "../ui/button";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useSearchParams } from "next/navigation";
 
-const Activities = ({ chainId }: { chainId?: number }) => {
+const Activities = () => {
+  const searchParams = useSearchParams();
+  const chainId = Number(searchParams.get("c"));
+
   const { data, isLoading } = trpc.portfolio.getActivities.useQuery({
-    limit: 18,
     chainId: chainId,
   });
 
   if (isLoading) {
-    return <Skeleton className="w-full rounded-xl border shadow-sm min-h-96" />;
+    return (
+      <Skeleton className="wrapper w-full rounded-xl my-6 border shadow-sm min-h-96" />
+    );
   } else {
     return (
-      <section className="border rounded-xl px-6 py-4 space-y-4 shadow-sm w-full">
+      <section className="wrapper border rounded-xl px-6 my-6 py-4 space-y-4 shadow-sm w-full">
         <div className="text-lg font-semibold flex items-center justify-between">
-          <Link
-            href={"/activity"}
-            className="hover:underline underline-offset-4"
-          >
+          <Link href={"#"} className="hover:underline underline-offset-4">
             <h2>Activity</h2>
           </Link>
         </div>
@@ -73,20 +75,6 @@ const Activities = ({ chainId }: { chainId?: number }) => {
             ))}
           </TableBody>
         </Table>
-
-        <div className="flex justify-between">
-          <Button
-            variant={"link"}
-            size={"sm"}
-            className="ml-auto text-primary-foreground"
-            style={{ padding: "0" }}
-            asChild
-          >
-            <Link href="/activity">
-              View all <ArrowRight />
-            </Link>
-          </Button>
-        </div>
       </section>
     );
   }

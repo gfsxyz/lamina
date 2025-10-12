@@ -9,26 +9,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
-import { Profile, trpc } from "@/lib/trpc";
-import { ArrowRight } from "lucide-react";
-import { Button } from "../ui/button";
+} from "@/components/ui/table";
+import { trpc } from "@/lib/trpc";
 import Link from "next/link";
 import { getChainBreakdown } from "@/lib/utils";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useSearchParams } from "next/navigation";
 
-const Wallet = ({
-  profile,
-  chainId,
-}: {
-  profile: Profile | undefined;
-  chainId?: number;
-}) => {
+const Wallet = () => {
+  const searchParams = useSearchParams();
+  const chainId = Number(searchParams.get("c"));
+  const { data: profile } = trpc.portfolio.getProfile.useQuery();
   const { data: prices, isLoading: pricesLoading } =
     trpc.portfolio.getPrices.useQuery();
   const { data: tokens, isLoading: tokensLoading } =
     trpc.portfolio.getTokens.useQuery({
-      count: 5,
       sortBy: "usdValue",
       order: "desc",
       chainId: chainId,
@@ -36,13 +31,13 @@ const Wallet = ({
 
   if (pricesLoading || tokensLoading) {
     return (
-      <Skeleton className="w-full rounded-xl border shadow-sm h-[26rem]" />
+      <Skeleton className="wrapper w-full rounded-xl my-6 border shadow-sm h-[26rem]" />
     );
   } else {
     return (
-      <section className="w-full rounded-xl py-4 px-6 space-y-4 border shadow-sm">
+      <section className="wrapper w-full rounded-xl py-4 my-6 px-6 space-y-4 border shadow-sm">
         <div className="text-lg font-semibold flex items-center justify-between">
-          <Link href={"/tokens"} className="hover:underline underline-offset-4">
+          <Link href={"#"} className="hover:underline underline-offset-4">
             <h2>Wallet</h2>
           </Link>
           <div>
@@ -100,19 +95,6 @@ const Wallet = ({
             ))}
           </TableBody>
         </Table>
-        <div className="flex justify-between">
-          <Button
-            variant={"link"}
-            size={"sm"}
-            className="ml-auto text-primary-foreground"
-            style={{ padding: "0" }}
-            asChild
-          >
-            <Link href="/tokens">
-              View all <ArrowRight />
-            </Link>
-          </Button>
-        </div>
       </section>
     );
   }
