@@ -21,7 +21,7 @@
         "1": {
           "tokens": 204500.55,
           "defi": 29011.0,
-          "nfts": 25827.0,
+          "nfts": 22300.0,
           "total": 259338.55
         },
         "56": {
@@ -33,7 +33,7 @@
         "43114": {
           "tokens": 24200.0,
           "defi": 0.0,
-          "nfts": 0.0,
+          "nfts": 3527.0,
           "total": 24200.0
         },
         "42161": {
@@ -305,7 +305,7 @@
       "tokenId": "1123",
       "image": "/media/nft/p1.jpg",
       "usdValue": 500,
-      "chainId": 1
+      "chainId": 43114
     },
     {
       "collection": "Sir Nerds",
@@ -313,7 +313,7 @@
       "tokenId": "2445",
       "image": "/media/nft/p2.jpg",
       "usdValue": 650,
-      "chainId": 1
+      "chainId": 43114
     },
     {
       "collection": "Sir Nerds",
@@ -321,7 +321,7 @@
       "tokenId": "3377",
       "image": "/media/nft/p3.jpg",
       "usdValue": 2377,
-      "chainId": 1
+      "chainId": 43114
     }
   ]
 }

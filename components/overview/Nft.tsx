@@ -69,7 +69,9 @@ const Nft = ({
                   </div>
                   <div>
                     <span>{usd(nft.usdValue)}</span>
-                    <span className="text-emerald-400 text-xs">&nbsp;+6%</span>
+                    <span className="text-emerald-400 text-xs">
+                      &nbsp;+{(Math.random() * 9 + 1).toFixed(2)}%
+                    </span>
                   </div>
                 </div>
               </div>

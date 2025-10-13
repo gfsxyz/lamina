@@ -74,7 +74,7 @@ const Nft = () => {
           <div>{usd(nftValues)}</div>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-2">
           {!data ||
             (data?.length === 0 && (
               <div className="text-sm text-muted-foreground mx-auto my-4">
@@ -82,7 +82,7 @@ const Nft = () => {
               </div>
             ))}
 
-          {data?.slice(0, 3).map((nft) => (
+          {data?.map((nft) => (
             <Link
               href="#"
               className="border rounded-2xl group"
@@ -110,7 +110,9 @@ const Nft = () => {
                   </div>
                   <div>
                     <span>{usd(nft.usdValue)}</span>
-                    <span className="text-emerald-400 text-xs">&nbsp;+6%</span>
+                    <span className="text-emerald-400 text-xs">
+                      &nbsp;+{(Math.random() * 9 + 1).toFixed(2)}%
+                    </span>
                   </div>
                 </div>
               </div>
