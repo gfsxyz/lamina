@@ -62,7 +62,7 @@ const Defi = () => {
         {!data ||
           (data.length === 0 && (
             <div className="text-sm text-muted-foreground text-center my-4">
-              No ositions found
+              No positions found
             </div>
           ))}
 
