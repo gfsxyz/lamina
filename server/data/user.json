@@ -10,42 +10,42 @@
     "following": 234,
     "earnings": 2477.26,
     "netWorth": {
-      "usd": 417930.26,
+      "usd": 420930.26,
       "changePercent": 4.79,
       "breakdown": {
         "tokens": 301222,
-        "defi": 30100,
+        "defi": 37400,
         "nfts": 25827.0
       },
       "chain_breakdown": {
         "1": {
           "tokens": 204500.55,
-          "defi": 29011.0,
+          "defi": 32358.0,
           "nfts": 22300.0,
           "total": 259338.55
         },
         "56": {
           "tokens": 30040.74,
-          "defi": 0.0,
+          "defi": 7300.0,
           "nfts": 0.0,
-          "total": 30040.74
+          "total": 37340.74
         },
         "43114": {
           "tokens": 24200.0,
-          "defi": 0.0,
+          "defi": 5921.0,
           "nfts": 3527.0,
-          "total": 24200.0
+          "total": 30301.0
         },
         "42161": {
           "tokens": 65200.0,
           "defi": 5300.0,
-          "nfts": 0.0,
-          "total": 70500.0
+          "nfts": 1670,
+          "total": 72170.0
         },
         "77777": {
           "tokens": 33850.97,
           "defi": 0.0,
-          "nfts": 0.0,
+          "nfts": 757,
           "total": 33850.97
         }
       }
@@ -264,6 +264,51 @@
           "apy": 11.28
         }
       ]
+    },
+    {
+      "protocol": "Cake",
+      "chain": "Binance Smart Chain",
+      "chainId": 56,
+      "position": "Liquidity Pool",
+      "icon": "/media/defi/cake.svg",
+      "assets": [
+        {
+          "symbol": "BNB",
+          "supplied": 4.3,
+          "usdValue": 7300,
+          "apy": 4.7
+        }
+      ]
+    },
+    {
+      "protocol": "Joe",
+      "chain": "Avalanche",
+      "chainId": 43114,
+      "position": "Liquidity Pool",
+      "icon": "/media/defi/joe.svg",
+      "assets": [
+        {
+          "symbol": "AVAX",
+          "supplied": 23,
+          "usdValue": 2574,
+          "apy": 5.3
+        }
+      ]
+    },
+    {
+      "protocol": "Cetus",
+      "chain": "Avalanche",
+      "chainId": 43114,
+      "position": "Liquidity Pool",
+      "icon": "/media/defi/cetus.svg",
+      "assets": [
+        {
+          "symbol": "AVAX",
+          "supplied": 23,
+          "usdValue": 3347,
+          "apy": 5.3
+        }
+      ]
     }
   ],
   "nfts": [
@@ -322,6 +367,54 @@
       "image": "/media/nft/p3.jpg",
       "usdValue": 2377,
       "chainId": 43114
+    },
+    {
+      "collection": "Opepen Edition",
+      "contract": "0x1234567890abcdef1234567890abcdef12377777",
+      "tokenId": "6442",
+      "image": "/media/nft/pp1.avif",
+      "usdValue": 423,
+      "chainId": 42161
+    },
+    {
+      "collection": "Opepen Edition",
+      "contract": "0x1234567890abcdef1234567890abcdef12377777",
+      "tokenId": "1154",
+      "image": "/media/nft/pp2.avif",
+      "usdValue": 512,
+      "chainId": 42161
+    },
+    {
+      "collection": "Opepen Edition",
+      "contract": "0x1234567890abcdef1234567890abcdef12377777",
+      "tokenId": "254",
+      "image": "/media/nft/pp3.avif",
+      "usdValue": 735,
+      "chainId": 42161
+    },
+    {
+      "collection": "Wink Realm Packs",
+      "contract": "0x1234567890abcdef1234567890abcdef12355555",
+      "tokenId": "01",
+      "image": "/media/nft/wink1.avif",
+      "usdValue": 24,
+      "chainId": 77777
+    },
+    {
+      "collection": "Wink Realm Packs",
+      "contract": "0x1234567890abcdef1234567890abcdef12355555",
+      "tokenId": "02",
+      "image": "/media/nft/wink2.avif",
+      "usdValue": 43,
+      "chainId": 77777
+    },
+    {
+      "collection": "Wink Realm Packs",
+      "contract": "0x1234567890abcdef1234567890abcdef12355555",
+      "tokenId": "03",
+      "image": "/media/nft/wink3.avif",
+      "usdValue": 690,
+      "chainId": 77777
     }
   ]
 }

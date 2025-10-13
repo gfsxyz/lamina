@@ -55,7 +55,7 @@ const Defi = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((item) => (
+            {data?.slice(0, 4).map((item) => (
               <TableRow key={item.protocol + item.position}>
                 <TableCell className="flex items-center gap-2 font-semibold">
                   <div className="size-8 relative">
