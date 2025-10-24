@@ -12,8 +12,8 @@ The project focuses on clean interface design, modular components, and scalable 
 - TypeScript-first design for better safety
 - Separation of data layer and presentation layer
 - Scalable structure for future Web3 additions
+  <br/>
 
-<br/>
 ### 🛠 Tech Stack
 
 | Category        | Tech                      |
@@ -27,6 +27,7 @@ The project focuses on clean interface design, modular components, and scalable 
 | Language        | TypeScript                |
 
 <br/>
+
 ### 🚀 Getting Started
 
 ```bash
@@ -41,6 +42,7 @@ http://localhost:3000
 ```
 
 <br/>
+
 ### 🔮 Future Enhancements
 
 - Live price feeds (CoinGecko, Alchemy)
