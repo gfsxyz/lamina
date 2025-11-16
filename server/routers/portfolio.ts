@@ -4,6 +4,7 @@ import { z } from "zod";
 import user from "@/server/data/user.json";
 import prices from "@/server/data/prices.json";
 import activities from "@/server/data/activities.json";
+import { fetchLivePrices } from "@/server/services/coingecko";
 
 const chainFilter = z.object({
   chainId: z.number().optional(),
@@ -26,7 +27,17 @@ export const portfolioRouter = router({
       return user.portfolio;
     }),
 
-  getPrices: publicProcedure.query(() => prices),
+  getPrices: publicProcedure.query(async () => {
+    try {
+      // Fetch live prices from CoinGecko
+      const livePrices = await fetchLivePrices();
+      return livePrices;
+    } catch (error) {
+      console.error("Failed to fetch live prices, falling back to static data:", error);
+      // Fallback to static prices if API fails
+      return prices;
+    }
+  }),
 
   // NFTs with chain filter
   getNfts: publicProcedure.input(chainFilter.optional()).query(({ input }) => {
