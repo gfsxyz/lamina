@@ -22,7 +22,9 @@ const Wallet = () => {
   const { data: profile, isLoading: profileLoading } =
     trpc.portfolio.getProfile.useQuery();
   const { data: prices, isLoading: pricesLoading } =
-    trpc.portfolio.getPrices.useQuery();
+    trpc.portfolio.getPrices.useQuery(undefined, {
+      refetchInterval: 60000, // Auto-refresh every 60 seconds
+    });
   const { data: tokens, isLoading: tokensLoading } =
     trpc.portfolio.getTokens.useQuery({
       sortBy: "usdValue",
@@ -67,7 +69,16 @@ const Wallet = () => {
       <section className="wrapper w-full rounded-xl py-4 my-6 px-6 space-y-4 border shadow-sm">
         <div className="text-lg font-semibold flex items-center justify-between">
           <Link href={"#"} className="hover:underline underline-offset-4">
-            <h2>Wallet</h2>
+            <h2 className="flex items-center gap-2">
+              Wallet
+              <span className="text-xs font-normal text-green-500 flex items-center gap-1">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Live
+              </span>
+            </h2>
           </Link>
           <div>
             {chainId
