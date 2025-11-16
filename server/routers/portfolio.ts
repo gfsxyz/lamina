@@ -4,7 +4,7 @@ import { z } from "zod";
 import user from "@/server/data/user.json";
 import prices from "@/server/data/prices.json";
 import activities from "@/server/data/activities.json";
-import { fetchLivePrices } from "@/server/services/coingecko";
+import { fetchLivePrices, type PriceData } from "@/server/services/coingecko";
 
 const chainFilter = z.object({
   chainId: z.number().optional(),
@@ -27,15 +27,22 @@ export const portfolioRouter = router({
       return user.portfolio;
     }),
 
-  getPrices: publicProcedure.query(async () => {
+  getPrices: publicProcedure.query(async (): Promise<PriceData> => {
     try {
       // Fetch live prices from CoinGecko
       const livePrices = await fetchLivePrices();
       return livePrices;
     } catch (error) {
       console.error("Failed to fetch live prices, falling back to static data:", error);
-      // Fallback to static prices if API fails
-      return prices;
+      // Fallback to static prices if API fails, but add empty sparklines
+      const fallbackPrices: PriceData = {};
+      Object.entries(prices).forEach(([symbol, data]) => {
+        fallbackPrices[symbol] = {
+          ...data,
+          sparkline: [],
+        };
+      });
+      return fallbackPrices;
     }
   }),
 
