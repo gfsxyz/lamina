@@ -19,9 +19,73 @@ const addressInput = z.object({
 export const portfolioRouter = router({
   getUser: publicProcedure.query(() => user), //get all user's data
 
-  getProfile: publicProcedure.query(() => {
-    return { ...user.profile, address: user.address, ens: user.ens };
-  }),
+  getProfile: publicProcedure
+    .input(z.object({ address: z.string().optional() }).optional())
+    .query(async ({ input }) => {
+      try {
+        const walletAddress = input?.address || DEFAULT_ADDRESS;
+
+        // Fetch live prices
+        const livePrices = await fetchLivePrices();
+
+        // Fetch real blockchain data
+        const portfolio = await fetchWalletPortfolio(walletAddress, livePrices);
+
+        // Calculate net worth from portfolio
+        const netWorth = portfolio.reduce((total, chain) => {
+          const chainTotal = chain.usdValue + chain.assets.reduce((sum, asset) => sum + asset.usdValue, 0);
+          return total + chainTotal;
+        }, 0);
+
+        // Calculate tokens value
+        const tokensValue = portfolio.reduce((total, chain) => {
+          const chainTokens = chain.usdValue + chain.assets.reduce((sum, asset) => sum + asset.usdValue, 0);
+          return total + chainTokens;
+        }, 0);
+
+        // Build chain breakdown
+        const chain_breakdown: Record<string, any> = {};
+        portfolio.forEach((chain) => {
+          const chainTokens = chain.usdValue + chain.assets.reduce((sum, asset) => sum + asset.usdValue, 0);
+          chain_breakdown[chain.chainId] = {
+            tokens: chainTokens,
+            defi: 0,
+            nfts: 0,
+            total: chainTokens,
+          };
+        });
+
+        return {
+          displayName: walletAddress.slice(0, 6) + "..." + walletAddress.slice(-4),
+          address: walletAddress,
+          ens: null,
+          avatar: "/placeholder.jpg",
+          bio: null,
+          following: 0,
+          followers: 0,
+          earnings: 0,
+          netWorth: {
+            usd: netWorth,
+            changePercent: 0,
+            breakdown: {
+              tokens: tokensValue,
+              defi: 0,
+              nfts: 0,
+            },
+            chain_breakdown,
+          },
+          links: {
+            x: null,
+            telegram: null,
+            website: null,
+          },
+        };
+      } catch (error) {
+        console.error("Failed to fetch profile:", error);
+        // Fallback to dummy data
+        return { ...user.profile, address: user.address, ens: user.ens };
+      }
+    }),
 
   // Portfolio with chain filter - NOW FETCHES REAL DATA
   getPortofolio: publicProcedure
@@ -71,29 +135,30 @@ export const portfolioRouter = router({
     }
   }),
 
-  // NFTs with chain filter
+  // NFTs with chain filter - Requires paid API (Alchemy/Moralis)
+  // Returning empty for now - upgrade to premium plan to enable
   getNfts: publicProcedure.input(chainFilter.optional()).query(({ input }) => {
-    let nfts = [...user.nfts];
-    if (input?.chainId) {
-      nfts = nfts.filter((n) => n.chainId === input.chainId);
-    }
-    return nfts;
+    // TODO: Integrate with Alchemy NFT API or Moralis
+    // For now, return empty array
+    return [];
   }),
 
-  // DeFi with chain filter
+  // DeFi with chain filter - Requires DeFi protocol APIs
+  // Returning empty for now - complex integration needed
   getDefi: publicProcedure.input(chainFilter.optional()).query(({ input }) => {
-    let defi = [...user.defi];
-    if (input?.chainId) {
-      defi = defi.filter((d) => d.chainId === input.chainId);
-    }
-    return defi;
+    // TODO: Integrate with DeFi Llama or individual protocol APIs
+    // For now, return empty array
+    return [];
   }),
 
   // Activities with chain filter + sort + limit
+  // Requires blockchain explorer APIs (Etherscan, etc.)
+  // Showing example activities for now
   getActivities: publicProcedure
     .input(
       z
         .object({
+          address: z.string().optional(),
           limit: z.number().min(1).max(100).optional(),
           sort: z.enum(["asc", "desc"]).optional().default("desc"),
           chainId: z.number().optional(),
@@ -101,26 +166,10 @@ export const portfolioRouter = router({
         .optional()
     )
     .query(({ input }) => {
-      let sorted = [...activities];
-
-      // filter by chain
-      if (input?.chainId) {
-        sorted = sorted.filter((a) => a.chain.chainId === input.chainId);
-      }
-
-      // sort
-      sorted = sorted.sort((a, b) =>
-        input?.sort === "asc"
-          ? new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-          : new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-      );
-
-      // limit
-      if (input?.limit) {
-        sorted = sorted.slice(0, input.limit);
-      }
-
-      return sorted;
+      // TODO: Fetch real transaction history from blockchain explorers
+      // Etherscan API, BSCScan API, etc.
+      // For now, return empty to show this wallet has no recent activity displayed
+      return [];
     }),
 
   // Tokens with chain filter + sort + count - NOW USES REAL DATA
