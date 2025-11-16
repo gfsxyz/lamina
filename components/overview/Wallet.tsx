@@ -91,7 +91,7 @@ const Wallet = ({
                 </TableCell>
                 <TableCell className="text-right">{item.balance}</TableCell>
                 <TableCell className="text-right">
-                  {usd(prices?.[item.symbol as keyof typeof prices].usd ?? 0)}
+                  {usd(prices?.[item.symbol as keyof typeof prices]?.usd ?? 0)}
                 </TableCell>
                 <TableCell className="text-right">
                   {usd(item.usdValue)}
