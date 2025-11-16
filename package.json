@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.8",
+    "@rainbow-me/rainbowkit": "^2.2.9",
     "@tanstack/react-query": "^5.90.2",
     "@trpc/client": "^11.6.0",
     "@trpc/react-query": "^11.6.0",
@@ -24,6 +25,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1",
+    "viem": "~2.39.0",
+    "wagmi": "^2.19.4",
     "zod": "^4.1.11"
   },
   "devDependencies": {
