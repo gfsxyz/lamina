@@ -16,6 +16,9 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { getChainBreakdown } from "@/lib/utils";
 import { Skeleton } from "../ui/skeleton";
+import { Sparkline } from "../ui/sparkline";
+import { usePriceChange } from "@/lib/hooks/usePriceChange";
+import { PriceCell } from "../ui/price-cell";
 
 const Wallet = ({
   profile,
@@ -25,7 +28,10 @@ const Wallet = ({
   chainId?: number;
 }) => {
   const { data: prices, isLoading: pricesLoading } =
-    trpc.portfolio.getPrices.useQuery();
+    trpc.portfolio.getPrices.useQuery(undefined, {
+      refetchInterval: 60000, // Auto-refresh every 60 seconds
+    });
+  const priceChanges = usePriceChange(prices);
   const { data: tokens, isLoading: tokensLoading } =
     trpc.portfolio.getTokens.useQuery({
       count: 5,
@@ -62,6 +68,7 @@ const Wallet = ({
               <TableHead>Token</TableHead>
               <TableHead className="text-right">Balance</TableHead>
               <TableHead className="text-right">Price</TableHead>
+              <TableHead className="text-right">7D</TableHead>
               <TableHead className="text-right">Value</TableHead>
             </TableRow>
           </TableHeader>
@@ -91,7 +98,19 @@ const Wallet = ({
                 </TableCell>
                 <TableCell className="text-right">{item.balance}</TableCell>
                 <TableCell className="text-right">
-                  {usd(prices?.[item.symbol as keyof typeof prices].usd ?? 0)}
+                  <PriceCell
+                    price={usd(prices?.[item.symbol as keyof typeof prices]?.usd ?? 0)}
+                    change={priceChanges[item.symbol] || "none"}
+                  />
+                </TableCell>
+                <TableCell className="text-right">
+                  {prices?.[item.symbol as keyof typeof prices]?.sparkline && (
+                    <Sparkline
+                      data={prices[item.symbol as keyof typeof prices].sparkline || []}
+                      width={60}
+                      height={20}
+                    />
+                  )}
                 </TableCell>
                 <TableCell className="text-right">
                   {usd(item.usdValue)}

@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { Bell } from "lucide-react";
 import { Button } from "./ui/button";
 import SearchBox from "./SearchBox";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 const Navbar = () => {
   return (
     <nav className="wrapper py-4 flex items-center justify-between">
@@ -15,6 +19,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center justify-end gap-4">
+        <ConnectButton />
         <Button size={"icon"} variant={"outline"}>
           <Bell />
         </Button>

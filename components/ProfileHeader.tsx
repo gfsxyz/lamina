@@ -102,42 +102,44 @@ const ProfileHeader = () => {
 
         <div className="w-full max-w-fit">
           <div className="font-semibold flex items-center gap-4">
-            <div className="text-lg">{data?.ens ?? "Unknown"}</div>
-            <div className="flex items-center gap-2">
-              <Button
-                size={"icon"}
-                variant={"outline"}
-                className="size-6"
-                asChild
-              >
-                <Link
-                  href={data?.links.x || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="text-lg">{data?.ens || data?.displayName || "Unknown"}</div>
+            {data?.links?.x && data?.links?.telegram && (
+              <div className="flex items-center gap-2">
+                <Button
+                  size={"icon"}
+                  variant={"outline"}
+                  className="size-6"
+                  asChild
                 >
-                  <Image src={"/x.svg"} alt="x logo" width={8} height={8} />
-                </Link>
-              </Button>
-              <Button
-                size={"icon"}
-                variant={"outline"}
-                className="size-6"
-                asChild
-              >
-                <Link
-                  href={data?.links.telegram || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <Link
+                    href={data?.links.x}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image src={"/x.svg"} alt="x logo" width={8} height={8} />
+                  </Link>
+                </Button>
+                <Button
+                  size={"icon"}
+                  variant={"outline"}
+                  className="size-6"
+                  asChild
                 >
-                  <Image
-                    src={"/telegram.svg"}
-                    alt="telegram logo"
-                    width={12}
-                    height={12}
-                  />
-                </Link>
-              </Button>
-            </div>
+                  <Link
+                    href={data?.links.telegram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src={"/telegram.svg"}
+                      alt="telegram logo"
+                      width={12}
+                      height={12}
+                    />
+                  </Link>
+                </Button>
+              </div>
+            )}
 
             <Button
               size="sm"
@@ -161,9 +163,8 @@ const ProfileHeader = () => {
             </TooltipContent>
           </Tooltip>
 
-          <div>
-            {data?.bio ??
-              "This user prefers to keep an air of mystery about them."}
+          <div className="text-sm text-muted-foreground">
+            {data?.bio || "Wallet portfolio tracker"}
           </div>
         </div>
       </div>
