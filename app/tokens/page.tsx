@@ -16,6 +16,8 @@ import { getChainBreakdown } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "next/navigation";
 import { Sparkline } from "@/components/ui/sparkline";
+import { usePriceChange } from "@/lib/hooks/usePriceChange";
+import { PriceCell } from "@/components/ui/price-cell";
 
 const Wallet = () => {
   const searchParams = useSearchParams();
@@ -26,6 +28,7 @@ const Wallet = () => {
     trpc.portfolio.getPrices.useQuery(undefined, {
       refetchInterval: 60000, // Auto-refresh every 60 seconds
     });
+  const priceChanges = usePriceChange(prices);
   const { data: tokens, isLoading: tokensLoading } =
     trpc.portfolio.getTokens.useQuery({
       sortBy: "usdValue",
@@ -119,7 +122,10 @@ const Wallet = () => {
                 </TableCell>
                 <TableCell className="text-right">{item.balance}</TableCell>
                 <TableCell className="text-right">
-                  {usd(prices?.[item.symbol as keyof typeof prices]?.usd ?? 0)}
+                  <PriceCell
+                    price={usd(prices?.[item.symbol as keyof typeof prices]?.usd ?? 0)}
+                    change={priceChanges[item.symbol] || "none"}
+                  />
                 </TableCell>
                 <TableCell className="text-right">
                   {prices?.[item.symbol as keyof typeof prices]?.sparkline && (
