@@ -5,8 +5,14 @@ import user from "@/server/data/user.json";
 import prices from "@/server/data/prices.json";
 import activities from "@/server/data/activities.json";
 import { fetchLivePrices, type PriceData } from "@/server/services/coingecko";
+import { fetchWalletPortfolio, DEFAULT_ADDRESS } from "@/server/services/blockchain";
 
 const chainFilter = z.object({
+  chainId: z.number().optional(),
+});
+
+const addressInput = z.object({
+  address: z.string().optional(),
   chainId: z.number().optional(),
 });
 
@@ -17,14 +23,33 @@ export const portfolioRouter = router({
     return { ...user.profile, address: user.address, ens: user.ens };
   }),
 
-  // Portfolio with chain filter
+  // Portfolio with chain filter - NOW FETCHES REAL DATA
   getPortofolio: publicProcedure
-    .input(chainFilter.optional())
-    .query(({ input }) => {
-      if (input?.chainId) {
-        return user.portfolio.filter((c) => c.chainId === input.chainId);
+    .input(addressInput.optional())
+    .query(async ({ input }) => {
+      try {
+        const walletAddress = input?.address || DEFAULT_ADDRESS;
+
+        // Fetch live prices first
+        const livePrices = await fetchLivePrices();
+
+        // Fetch real blockchain data
+        const portfolio = await fetchWalletPortfolio(walletAddress, livePrices);
+
+        // Filter by chain if requested
+        if (input?.chainId) {
+          return portfolio.filter((c) => c.chainId === input.chainId);
+        }
+
+        return portfolio;
+      } catch (error) {
+        console.error("Failed to fetch wallet portfolio:", error);
+        // Fallback to dummy data on error
+        if (input?.chainId) {
+          return user.portfolio.filter((c) => c.chainId === input.chainId);
+        }
+        return user.portfolio;
       }
-      return user.portfolio;
     }),
 
   getPrices: publicProcedure.query(async (): Promise<PriceData> => {
@@ -98,11 +123,12 @@ export const portfolioRouter = router({
       return sorted;
     }),
 
-  // Tokens with chain filter + sort + count
+  // Tokens with chain filter + sort + count - NOW USES REAL DATA
   getTokens: publicProcedure
     .input(
       z
         .object({
+          address: z.string().optional(),
           chainId: z.number().optional(),
           count: z.number().optional(),
           sortBy: z.enum(["usdValue", "balance", "symbol"]).optional(),
@@ -110,54 +136,114 @@ export const portfolioRouter = router({
         })
         .optional()
     )
-    .query(({ input }) => {
-      const chains = input?.chainId
-        ? user.portfolio.filter((c) => c.chainId === input.chainId)
-        : user.portfolio;
+    .query(async ({ input }) => {
+      try {
+        const walletAddress = input?.address || DEFAULT_ADDRESS;
 
-      let tokens = chains.flatMap((chain) => [
-        {
-          symbol: chain.symbol,
-          balance: chain.balance,
-          usdValue: chain.usdValue,
-          icon: chain.icon,
-          chain: chain.chain,
-          chainIcon: chain.icon,
-          chainId: chain.chainId,
-        },
-        ...chain.assets.map((asset) => ({
-          symbol: asset.symbol,
-          balance: asset.balance,
-          usdValue: asset.usdValue,
-          icon: asset.icon,
-          chain: chain.chain,
-          chainIcon: chain.icon,
-          chainId: chain.chainId,
-        })),
-      ]);
+        // Fetch live prices
+        const livePrices = await fetchLivePrices();
 
-      // sorting
-      if (input?.sortBy) {
-        tokens = tokens.sort((a, b) => {
-          const valA = a[input.sortBy!];
-          const valB = b[input.sortBy!];
-          if (typeof valA === "number" && typeof valB === "number") {
-            return input.order === "asc" ? valA - valB : valB - valA;
-          }
-          if (typeof valA === "string" && typeof valB === "string") {
-            return input.order === "asc"
-              ? valA.localeCompare(valB)
-              : valB.localeCompare(valA);
-          }
-          return 0;
-        });
+        // Fetch real blockchain data
+        const portfolio = await fetchWalletPortfolio(walletAddress, livePrices);
+
+        // Filter by chain if requested
+        const chains = input?.chainId
+          ? portfolio.filter((c) => c.chainId === input.chainId)
+          : portfolio;
+
+        let tokens = chains.flatMap((chain) => [
+          {
+            symbol: chain.symbol,
+            balance: chain.balance,
+            usdValue: chain.usdValue,
+            icon: chain.icon,
+            chain: chain.chain,
+            chainIcon: chain.icon,
+            chainId: chain.chainId,
+          },
+          ...chain.assets.map((asset) => ({
+            symbol: asset.symbol,
+            balance: asset.balance,
+            usdValue: asset.usdValue,
+            icon: asset.icon,
+            chain: chain.chain,
+            chainIcon: chain.icon,
+            chainId: chain.chainId,
+          })),
+        ]);
+
+        // sorting
+        if (input?.sortBy) {
+          tokens = tokens.sort((a, b) => {
+            const valA = a[input.sortBy!];
+            const valB = b[input.sortBy!];
+            if (typeof valA === "number" && typeof valB === "number") {
+              return input.order === "asc" ? valA - valB : valB - valA;
+            }
+            if (typeof valA === "string" && typeof valB === "string") {
+              return input.order === "asc"
+                ? valA.localeCompare(valB)
+                : valB.localeCompare(valA);
+            }
+            return 0;
+          });
+        }
+
+        // count limit
+        if (input?.count) {
+          tokens = tokens.slice(0, input.count);
+        }
+
+        return tokens;
+      } catch (error) {
+        console.error("Failed to fetch tokens:", error);
+        // Fallback to dummy data
+        const chains = input?.chainId
+          ? user.portfolio.filter((c) => c.chainId === input.chainId)
+          : user.portfolio;
+
+        let tokens = chains.flatMap((chain) => [
+          {
+            symbol: chain.symbol,
+            balance: chain.balance,
+            usdValue: chain.usdValue,
+            icon: chain.icon,
+            chain: chain.chain,
+            chainIcon: chain.icon,
+            chainId: chain.chainId,
+          },
+          ...chain.assets.map((asset) => ({
+            symbol: asset.symbol,
+            balance: asset.balance,
+            usdValue: asset.usdValue,
+            icon: asset.icon,
+            chain: chain.chain,
+            chainIcon: chain.icon,
+            chainId: chain.chainId,
+          })),
+        ]);
+
+        if (input?.sortBy) {
+          tokens = tokens.sort((a, b) => {
+            const valA = a[input.sortBy!];
+            const valB = b[input.sortBy!];
+            if (typeof valA === "number" && typeof valB === "number") {
+              return input.order === "asc" ? valA - valB : valB - valA;
+            }
+            if (typeof valA === "string" && typeof valB === "string") {
+              return input.order === "asc"
+                ? valA.localeCompare(valB)
+                : valB.localeCompare(valA);
+            }
+            return 0;
+          });
+        }
+
+        if (input?.count) {
+          tokens = tokens.slice(0, input.count);
+        }
+
+        return tokens;
       }
-
-      // count limit
-      if (input?.count) {
-        tokens = tokens.slice(0, input.count);
-      }
-
-      return tokens;
     }),
 });
