@@ -28,6 +28,7 @@ const SYMBOL_TO_COINGECKO_ID: Record<string, string> = {
 export interface TokenPrice {
   usd: number;
   change24h: number;
+  sparkline?: number[]; // 7-day price history
 }
 
 export interface PriceData {
@@ -59,7 +60,7 @@ export async function fetchLivePrices(): Promise<PriceData> {
     const coinIds = Object.values(SYMBOL_TO_COINGECKO_ID).join(",");
 
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${coinIds}&vs_currencies=usd&include_24hr_change=true`,
+      `https://api.coingecko.com/api/v3/simple/price?ids=${coinIds}&vs_currencies=usd&include_24hr_change=true&include_sparkline_7d=true`,
       {
         headers: {
           Accept: "application/json",
@@ -82,6 +83,7 @@ export async function fetchLivePrices(): Promise<PriceData> {
         prices[symbol] = {
           usd: coinData.usd,
           change24h: coinData.usd_24h_change || 0,
+          sparkline: coinData.sparkline_7d?.price || [],
         };
       }
     }

@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { getChainBreakdown } from "@/lib/utils";
 import { Skeleton } from "../ui/skeleton";
+import { Sparkline } from "../ui/sparkline";
 
 const Wallet = ({
   profile,
@@ -64,6 +65,7 @@ const Wallet = ({
               <TableHead>Token</TableHead>
               <TableHead className="text-right">Balance</TableHead>
               <TableHead className="text-right">Price</TableHead>
+              <TableHead className="text-right">7D</TableHead>
               <TableHead className="text-right">Value</TableHead>
             </TableRow>
           </TableHeader>
@@ -94,6 +96,15 @@ const Wallet = ({
                 <TableCell className="text-right">{item.balance}</TableCell>
                 <TableCell className="text-right">
                   {usd(prices?.[item.symbol as keyof typeof prices]?.usd ?? 0)}
+                </TableCell>
+                <TableCell className="text-right">
+                  {prices?.[item.symbol as keyof typeof prices]?.sparkline && (
+                    <Sparkline
+                      data={prices[item.symbol as keyof typeof prices].sparkline || []}
+                      width={60}
+                      height={20}
+                    />
+                  )}
                 </TableCell>
                 <TableCell className="text-right">
                   {usd(item.usdValue)}
